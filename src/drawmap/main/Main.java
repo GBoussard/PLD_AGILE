@@ -5,6 +5,7 @@ import drawmap.view.*;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -23,7 +24,8 @@ public class Main extends Application {
 
         CityMap cm = new CityMap();
         cm.read("./fichiersXML2020/largeMap.xml");
-        MapCanvas canvas = new MapCanvas(cm, 1366, 768);
+
+        MapCanvas canvas = new MapCanvas(cm,1366, 768);
         root.getChildren().add(canvas);
 
         Scene scene = new Scene(root, 1366, 768);

@@ -3,10 +3,13 @@ import drawmap.model.*;
 import java.util.Map.Entry;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.Pane;
+import javafx.scene.Group;
+import javafx.scene.shape.Line;
 
 import java.util.Iterator;
 
-public class MapCanvas extends Canvas {
+public class MapCanvas extends Pane {
 
     private CityMap map;
 
@@ -20,12 +23,9 @@ public class MapCanvas extends Canvas {
     //control attributes
     private Double old_x=null, old_y = null;
 
-    public MapCanvas() {
-
-    }
-
     public MapCanvas(CityMap m, Integer width, Integer height) {
-        super(width, height);
+        super();
+        this.setPrefSize(width, height);
 
         this.setOnMousePressed(e-> {
             //System.out.println(e.getX() + " " + e.getY());
@@ -38,7 +38,7 @@ public class MapCanvas extends Canvas {
             if(old_x == null || old_y ==null) return;
             offset_h += (e.getY() - old_y)/(this.height/scale);
             offset_w -= (e.getX() - old_x)/(this.height/scale);
-            System.out.println(offset_h + " " + offset_w);
+            //System.out.println(offset_h + " " + offset_w);
             old_x = e.getX();
             old_y = e.getY();
             drawMap();
@@ -51,7 +51,7 @@ public class MapCanvas extends Canvas {
         });
 
         this.setOnScroll(s-> {
-            System.out.println(s.getTextDeltaY());
+            //System.out.println(s.getTextDeltaY());
             scale+= 0.005*Math.signum(s.getTextDeltaY());
             if(scale < 0.02) scale=0.02;
             else if(scale > 2) scale=2.0;
@@ -69,10 +69,8 @@ public class MapCanvas extends Canvas {
     }
 
     public void drawMap() {
-        GraphicsContext gc = this.getGraphicsContext2D();
-        gc.clearRect(0,0,width, height);
+        this.getChildren().clear();
         Iterator it_segment = this.map.getSegmentIterator();
-        Iterator it_intersection = this.map.getIntersectionIterator();
         double a_h = -this.height / scale;
         double b_h = (-1.0)*a_h*offset_h;
         double a_w = -a_h;
@@ -90,11 +88,11 @@ public class MapCanvas extends Canvas {
 
             //System.out.println(s.getName());
             //System.out.println(x0 + " " + (a_w*x0+b_w)+ " " + y0 + " " + (a_h*y0+b_h));
-            gc.beginPath();
-            gc.moveTo(a_w*x0+b_w,a_h*y0+b_h);
-            gc.lineTo(a_w*x1+b_w,a_h*y1+b_h);
-            gc.closePath();
-            gc.stroke();
+            Line l = new Line(a_w*x0+b_w,a_h*y0+b_h,a_w*x1+b_w,a_h*y1+b_h);
+            l.setOnMouseEntered(e-> {
+                System.out.println(s.getName());
+            });
+            this.getChildren().add(l);
         }
 
     }
