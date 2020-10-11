@@ -6,6 +6,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.scene.Group;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.StrokeType;
+import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
 
 import java.util.Iterator;
 
@@ -89,9 +92,28 @@ public class MapCanvas extends Pane {
             //System.out.println(s.getName());
             //System.out.println(x0 + " " + (a_w*x0+b_w)+ " " + y0 + " " + (a_h*y0+b_h));
             Line l = new Line(a_w*x0+b_w,a_h*y0+b_h,a_w*x1+b_w,a_h*y1+b_h);
+            l.setStrokeWidth(3*(scale/2.0)+1);
+            l.setStrokeType(StrokeType.OUTSIDE);
+            Text t = new Text(0,0,s.getName());
+            t.setFill(Color.BLUE);
+            this.getChildren().add(t);
+            t.setVisible(false);
             l.setOnMouseEntered(e-> {
+                System.out.println("entered");
                 System.out.println(s.getName());
             });
+            l.setOnMouseMoved(e-> {
+                System.out.println("moved");
+                t.setX(e.getX());
+                t.setY(e.getY());
+                t.setVisible(true);
+
+            });
+            l.setOnMouseExited(e-> {
+                System.out.println("exited");
+                t.setVisible(false);
+            });
+
             this.getChildren().add(l);
         }
 
