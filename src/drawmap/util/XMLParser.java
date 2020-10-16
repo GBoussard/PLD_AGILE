@@ -29,12 +29,12 @@ public class XMLParser extends DefaultHandler{
             throws SAXException {
 
         if(qname == "intersection") {
-            cm.addIntersection(new Intersection(Long.parseLong(attrs.getValue("id")), Double.parseDouble(attrs.getValue("latitude")),
-                    Double.parseDouble(attrs.getValue("longitude"))));
+            cm.addIntersection(Long.parseLong(attrs.getValue("id")), Double.parseDouble(attrs.getValue("latitude")),
+                    Double.parseDouble(attrs.getValue("longitude")));
         }
         if(qname == "segment") {
-            cm.addSegment(new Segment(Double.parseDouble(attrs.getValue("length")), cm.getIntersectionById(Long.parseLong(attrs.getValue("origin"))),
-                    cm.getIntersectionById(Long.parseLong(attrs.getValue("destination"))), attrs.getValue("name")));
+            cm.addSegment(Double.parseDouble(attrs.getValue("length")), Long.parseLong(attrs.getValue("origin")),
+                    Long.parseLong(attrs.getValue("destination")), attrs.getValue("name"));
 
         }
     }

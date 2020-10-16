@@ -35,12 +35,15 @@ public class CityMap {
         list_segment.clear();
     }
 
-    public void addIntersection(Intersection e) {
-        map_intersection.put(e.getId(), e);
+    public void addIntersection(Long id, Double latitude, Double longitude) {
+
+        map_intersection.put(id, new Intersection(id, latitude, longitude));
     }
 
-    public void addSegment(Segment e) {
-        list_segment.add(e);
+    public void addSegment(Double length, Long id_origin, Long id_destination, String name) {
+        if(!(map_intersection.containsKey(id_origin) && map_intersection.containsKey(id_destination))) return;
+
+        list_segment.add(new Segment(length, map_intersection.get(id_origin), map_intersection.get(id_destination), name));
     }
 
     public Intersection getIntersectionById(Long id) {
