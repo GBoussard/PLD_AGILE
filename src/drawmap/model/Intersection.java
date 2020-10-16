@@ -54,15 +54,23 @@ public class Intersection {
         for(int j = 0; j < voisins.size(); ++j) {
             Pair<Segment, Intersection> current = voisins.get(j);
 
+            // 1: getting the right index to put the new intersection at, so the list is still sorted.
             if(current.getL().getLength() > s.getLength() && index == -1) {
                 index = j;
+                // no break because we want to check if there is any redundant neighbourhood relationship
+                // (in that case it will be deleted as it will be a longer one).
+            } else if(j == voisins.size() - 1 && index == -1) {
+                index = voisins.size();
             }
 
+            // 2: if there is a shorter redundancy, the neighborhood relationship won't be added.
             if(current.getL().getDestination().getId() == s.getDestination().getId()
             && current.getL().getLength() < s.getLength()) {
                 index = -1;
                 break;
             }
+
+            // 3 : if there is a longer redundancy, we delete it.
             else if(current.getL().getDestination().getId() == s.getDestination().getId()
                     && current.getL().getLength() > s.getLength()) {
                 voisins.remove(i);
