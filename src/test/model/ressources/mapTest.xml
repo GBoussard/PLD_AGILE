@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<map>
+    <intersection id="1" latitude="45.75406" longitude="4.857418"/>
+    <intersection id="2" latitude="45.750404" longitude="4.8744674"/>
+    <intersection id="3" latitude="45.75402" longitude="4.894458"/>
+    <intersection id="4" latitude="45.750400" longitude="4.916687"/>
+    <segment destination="1" length="200" name="Rue Hugo Degeorges" origin="2"/>
+    <segment destination="2" length="400" name="Rue Hugo Degeorges" origin="1"/>
+    <segment destination="2" length="100" name="Avenue Geoffroy Boussard" origin="3"/>
+    <segment destination="3" length="300" name="Chemin Aksel Volle" origin="1"/>
+    <segment destination="4" length="125.5" name="Rue Elie Levy" origin="3"/>
+    <segment destination="1" length="587" name="Boulevard Florian Aymard" origin="3"/>
+    <segment destination="1" length="42" name="Rue St.Nicolas Julien" origin="2"/>
+</map>

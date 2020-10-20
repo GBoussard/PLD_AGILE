@@ -20,14 +20,8 @@ public class CityMap {
     }
 
     public void read(String file) {
-        try {
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            SAXParser parser = factory.newSAXParser();
-            parser.parse(new File(file), new XMLParser(this));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        XMLParser parser = new XMLParser(this);
+        parser.parseMap(file);
     }
 
     public void clearMap() {
