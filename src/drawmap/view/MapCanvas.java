@@ -9,6 +9,8 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
+import javafx.scene.control.slider;
+//https://docs.oracle.com/javafx/2/ui_controls/slider.htm and https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Slider.html and http://johnthecodingarchitect.blogspot.com/2013/11/scaling-vs-zooming-in-javafx.html
 
 import java.util.Iterator;
 

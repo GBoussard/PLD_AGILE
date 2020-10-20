@@ -7,6 +7,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
+import javafx.geometry.Insets;
 
 public class Main extends Application {
 
@@ -14,6 +17,7 @@ public class Main extends Application {
     public void start(Stage stage) {
 
         initUI(stage);
+
     }
 
     private void initUI(Stage stage) {
@@ -26,7 +30,9 @@ public class Main extends Application {
         MapCanvas canvas = new MapCanvas(cm,1366, 768);
         root.getChildren().add(canvas);
 
+
         Scene scene = new Scene(root, 1366, 768);
+
         canvas.drawMap();
         stage.setTitle("Lines");
         stage.setScene(scene);
