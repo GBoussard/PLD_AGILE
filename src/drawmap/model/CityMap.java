@@ -43,7 +43,9 @@ public class CityMap {
     public void addSegment(Double length, Long id_origin, Long id_destination, String name) {
         if(!(map_intersection.containsKey(id_origin) && map_intersection.containsKey(id_destination))) return;
 
-        list_segment.add(new Segment(length, map_intersection.get(id_origin), map_intersection.get(id_destination), name));
+        Segment s = new Segment(length, map_intersection.get(id_origin), map_intersection.get(id_destination), name);
+        map_intersection.get(id_origin).addVoisin(s, map_intersection.get(id_destination));
+        list_segment.add(s);
     }
 
     public Intersection getIntersectionById(Long id) {
@@ -55,5 +57,11 @@ public class CityMap {
     }
     public Iterator getIntersectionIterator() {
         return map_intersection.entrySet().iterator();
+    }
+    public HashMap<Long, Intersection> getListeIntersections() {
+        return map_intersection;
+    }
+    public ArrayList<Segment> getListeSegments() {
+        return list_segment;
     }
 }
