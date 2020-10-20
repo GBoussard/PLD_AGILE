@@ -20,8 +20,8 @@ public class CityMap {
     }
 
     public void read(String file) {
-        XMLParser parser = new XMLParser(this);
-        parser.parseMap(file);
+        XMLParser parser = new XMLParser();
+        parser.parseMap(file, this);
     }
 
     public void clearMap() {

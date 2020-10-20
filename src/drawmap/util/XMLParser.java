@@ -83,10 +83,12 @@ public class XMLParser {
                 Integer deliveryDuration = Integer.parseInt(attrs.getValue("deliveryDuration"));
 
 
-                dt.addRequest(new Request(cm.getIntersectionById(pickupAddress), cm.getIntersectionById(deliveryAddress), pickupDuration, deliveryDuration));
+                dt.addRequest(new Request(cm.getIntersectionById(pickupAddress),
+                        cm.getIntersectionById(deliveryAddress),
+                        pickupDuration, deliveryDuration));
 
             }
-            if (qname == "request") {
+            if (qname == "depot") {
                 dt.setOrigin(cm.getIntersectionById(Long.parseLong(attrs.getValue("address"))));
                 try {
                     Date departureTime = new SimpleDateFormat("H:m:s").parse(attrs.getValue("departureTime"));
@@ -101,27 +103,31 @@ public class XMLParser {
 
     }
 
+    public XMLParser() {
+
+    }
+
     public XMLParser(CityMap cm, DeliveryTour dt) {
         this.cm = cm;
         this.dt = dt;
     }
 
-    public void parseMap(String filepath) {
+    public void parseMap(String filepath, CityMap cm) {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser parser = factory.newSAXParser();
-            parser.parse(new File(filepath), new MapParser(this.cm));
+            parser.parse(new File(filepath), new MapParser(cm));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    public void parseTour(String filepath, CityMap cm){
+    public void parseTour(String filepath, DeliveryTour dt, CityMap cm){
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser parser = factory.newSAXParser();
-            parser.parse(new File(filepath), new TourParser(this.dt, cm));
+            parser.parse(new File(filepath), new TourParser(dt, cm));
         } catch (Exception e) {
             e.printStackTrace();
         }

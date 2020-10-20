@@ -9,12 +9,16 @@ import javafx.beans.value.ObservableValue;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
+
+import java.util.Iterator;
 
 public class Main extends Application {
 
@@ -33,7 +37,10 @@ public class Main extends Application {
         CityMap cm = new CityMap();
         cm.read("./fichiersXML2020/largeMap.xml");
 
-        MapCanvas canvas = new MapCanvas(cm,1200, 1000);
+        DeliveryTour dt = new DeliveryTour();
+        dt.read("./fichiersXML2020/requestsLarge7.xml", cm);
+
+        MapCanvas canvas = new MapCanvas(cm, dt,1200, 1000);
         MapCanvasController canvasController = new MapCanvasController(canvas);
         root.getChildren().add(canvas);
 
@@ -61,6 +68,25 @@ public class Main extends Application {
         but.prefWidthProperty().bind(loadBox.widthProperty().divide(3));
         VBox requestBox = new VBox();
         textualView.getChildren().add(requestBox);
+
+        Iterator it_requests = dt.getRequestIterator();
+        while(it_requests.hasNext()) {
+            Request r = (Request) it_requests.next();
+
+            HBox requestLine = new HBox(20);
+            requestLine.getChildren().add(new Rectangle(20,20, r.getColor()));
+            requestLine.getChildren().add(
+                    new Label(r.getDelivery().getLatitude() + ";" + r.getDelivery().getLongitude()));
+            requestLine.getChildren().add(
+                    new Label(r.getPickup().getLatitude() + ";" + r.getPickup().getLongitude()));
+
+            requestBox.getChildren().add(requestLine);
+
+
+
+        }
+
+
         root.getChildren().add(textualView);
 
         Scene scene = new Scene(root, 1920, 1000);

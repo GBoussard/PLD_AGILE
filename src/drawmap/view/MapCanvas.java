@@ -5,7 +5,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.scene.Group;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
@@ -17,6 +19,7 @@ import java.util.Iterator;
 public class MapCanvas extends Pane {
 
     private CityMap map;
+    private DeliveryTour tour;
 
     // geometric attributes and modifiers
     private Integer width;
@@ -33,12 +36,22 @@ public class MapCanvas extends Pane {
     //control attributes
     private Double old_x=null, old_y = null;
 
-    public MapCanvas(CityMap m, Integer width, Integer height) {
+    public MapCanvas(CityMap m, DeliveryTour dt, Integer width, Integer height) {
         super();
         this.setHeight(height);
         this.setWidth(width);
         this.setMaxSize(width, height);
         this.setMinSize(width, height);
+        this.width = width;
+        this.height = height;
+        this.map = m;
+        this.tour = dt;
+
+
+        a_h = -this.height / scale;
+        b_h = (-1.0)*a_h*offset_h;
+        a_w = -a_h;
+        b_w = (-1.0)*a_w*offset_w;
 
 
         this.setOnMousePressed(e-> {
@@ -85,9 +98,7 @@ public class MapCanvas extends Pane {
             drawMap();
         });
 
-        this.width = width;
-        this.height = height;
-        this.map = m;
+
     }
 
     public void setScale(double s) {
@@ -105,6 +116,8 @@ public class MapCanvas extends Pane {
 
 
         //System.out.println(a_w + " " + b_w + " " + a_h + " " + b_h);
+
+        // ******* DRAW ROADS *******
 
         while(it_segment.hasNext()) {
             Segment s = (Segment) it_segment.next();
@@ -155,6 +168,35 @@ public class MapCanvas extends Pane {
 
             this.getChildren().add(l);
         }
+
+        Iterator it_requests = tour.getRequestIterator();
+
+        while(it_requests.hasNext()) {
+            Request r = (Request) it_requests.next();
+
+            double x0 = r.getPickup().getLongitude();
+            double y0 = r.getPickup().getLatitude();
+            double x1 = r.getDelivery().getLongitude();
+            double y1 = r.getDelivery().getLatitude();
+
+            double compute_x0 = constrain(a_w*x0+b_w,0,width);
+            double compute_y0 = constrain(a_h*y0+b_h, 0, height);
+            double compute_x1 = constrain(a_w*x1+b_w, 0, width);
+            double compute_y1 = constrain(a_h*y1+b_h, 0, height);
+
+
+
+            Rectangle rect_origin = new Rectangle(compute_x0, compute_y0, 20, 20);
+            rect_origin.setFill(r.getColor());
+            Circle circle_destination = new Circle(compute_x1,compute_y1,10);
+            circle_destination.setFill(r.getColor());
+
+            this.getChildren().add(rect_origin);
+            this.getChildren().add(circle_destination);
+
+        }
+
+
 
     }
 
