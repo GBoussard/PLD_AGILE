@@ -9,7 +9,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
-import javafx.scene.control.slider;
+import javafx.scene.control.Slider;
 //https://docs.oracle.com/javafx/2/ui_controls/slider.htm and https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Slider.html and http://johnthecodingarchitect.blogspot.com/2013/11/scaling-vs-zooming-in-javafx.html
 
 import java.util.Iterator;
@@ -25,12 +25,21 @@ public class MapCanvas extends Pane {
     private Double offset_h = 45.765;
     private Double scale = 0.02;
 
+    double a_h;
+    double b_h;
+    double a_w;
+    double b_w;
+
     //control attributes
     private Double old_x=null, old_y = null;
 
     public MapCanvas(CityMap m, Integer width, Integer height) {
         super();
-        this.setPrefSize(width, height);
+        this.setHeight(height);
+        this.setWidth(width);
+        this.setMaxSize(width, height);
+        this.setMinSize(width, height);
+
 
         this.setOnMousePressed(e-> {
             //System.out.println(e.getX() + " " + e.getY());
@@ -43,7 +52,15 @@ public class MapCanvas extends Pane {
             if(old_x == null || old_y ==null) return;
             offset_h += (e.getY() - old_y)/(this.height/scale);
             offset_w -= (e.getX() - old_x)/(this.height/scale);
-            //System.out.println(offset_h + " " + offset_w);
+
+
+            a_h = -this.height / scale;
+            b_h = (-1.0)*a_h*offset_h;
+            a_w = -a_h;
+            b_w = (-1.0)*a_w*offset_w;
+
+            //offset_w = constrain(offset_w, 4.8316, 4.89142);
+            //offset_h = constrain(offset_h,45.74748, 45.7708);
             old_x = e.getX();
             old_y = e.getY();
             drawMap();
@@ -58,12 +75,12 @@ public class MapCanvas extends Pane {
         this.setOnScroll(s-> {
             //System.out.println(s.getTextDeltaY());
             scale+= 0.005*Math.signum(s.getTextDeltaY());
-            if(scale < 0.02) scale=0.02;
-            else if(scale > 2) scale=2.0;
-            else {
-                // TODO : try to zoom into the cursor-designed point
-                
-            }
+            scale = constrain(scale, 0.02, 2);
+            a_h = -this.height / scale;
+            b_h = (-1.0)*a_h*offset_h;
+            a_w = -a_h;
+            b_w = (-1.0)*a_w*offset_w;
+
 
             drawMap();
         });
@@ -73,13 +90,19 @@ public class MapCanvas extends Pane {
         this.map = m;
     }
 
+    public void setScale(double s) {
+        this.scale = s;
+        a_h = -this.height / scale;
+        b_h = (-1.0)*a_h*offset_h;
+        a_w = -a_h;
+        b_w = (-1.0)*a_w*offset_w;
+        drawMap();
+    }
+
     public void drawMap() {
         this.getChildren().clear();
         Iterator it_segment = this.map.getSegmentIterator();
-        double a_h = -this.height / scale;
-        double b_h = (-1.0)*a_h*offset_h;
-        double a_w = -a_h;
-        double b_w = (-1.0)*a_w*offset_w;
+
 
         //System.out.println(a_w + " " + b_w + " " + a_h + " " + b_h);
 
@@ -90,10 +113,27 @@ public class MapCanvas extends Pane {
             double x1 = s.getDestination().getLongitude();
             double y1 = s.getDestination().getLatitude();
 
+            double compute_x0 = a_w*x0+b_w;
+            double compute_y0 = a_h*y0+b_h;
+            double compute_x1 = a_w*x1+b_w;
+            double compute_y1 = a_h*y1+b_h;
+
+            if((compute_x0 < 0 && compute_x1 < 0) || (compute_y0 < 0 && compute_y1 < 0) ||
+                    (compute_x0 > width && compute_x1 > width) || (compute_y0 > height && compute_y1 > height)) {
+
+                continue;
+            }
+
+            compute_x0 = constrain(compute_x0, 0, width);
+            compute_x1 = constrain(compute_x1, 0, width);
+            compute_y0 = constrain(compute_y0, 0, height);
+            compute_y1 = constrain(compute_y1, 0, height);
+
+
 
             //System.out.println(s.getName());
             //System.out.println(x0 + " " + (a_w*x0+b_w)+ " " + y0 + " " + (a_h*y0+b_h));
-            Line l = new Line(a_w*x0+b_w,a_h*y0+b_h,a_w*x1+b_w,a_h*y1+b_h);
+            Line l = new Line(compute_x0,compute_y0,compute_x1,compute_y1);
             l.setStrokeWidth(3*(scale/2.0)+1);
             l.setStrokeType(StrokeType.OUTSIDE);
             Text t = new Text(0,0,s.getName());
@@ -101,24 +141,27 @@ public class MapCanvas extends Pane {
             this.getChildren().add(t);
             t.setVisible(false);
             l.setOnMouseEntered(e-> {
-                System.out.println("entered");
-                System.out.println(s.getName());
+
             });
             l.setOnMouseMoved(e-> {
-                System.out.println("moved");
                 t.setX(e.getX());
                 t.setY(e.getY());
                 t.setVisible(true);
 
             });
             l.setOnMouseExited(e-> {
-                System.out.println("exited");
                 t.setVisible(false);
             });
 
             this.getChildren().add(l);
         }
 
+    }
+
+    private double constrain(double value, double min, double max) {
+        if(value < min) value = min;
+        if(value > max) value = max;
+        return value;
     }
 
 }

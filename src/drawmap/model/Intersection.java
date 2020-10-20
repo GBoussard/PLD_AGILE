@@ -8,7 +8,7 @@ public class Intersection {
     private Long id;
     private Double latitude;
     private Double longitude;
-    private ArrayList<Pair<Segment, Intersection>> voisins;
+    private ArrayList<Pair<Segment, Intersection>> voisins = new ArrayList<Pair<Segment, Intersection>>();
 
     public Intersection() {
     }
