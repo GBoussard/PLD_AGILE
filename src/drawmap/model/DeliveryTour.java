@@ -36,7 +36,9 @@ public class DeliveryTour {
         parser.parseTour(filename, this, cm);
     }
 
-
+    public List<Request> getRequests() {
+        return requests;
+    }
 
     public void addRequest(Request r) {
         requests.add(r);

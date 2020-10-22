@@ -1,5 +1,7 @@
 package drawmap.model;
 
+import javafx.util.Pair;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -43,6 +45,10 @@ public class Intersection {
         this.longitude = longitude;
     }
 
+    public ArrayList<Pair<Segment, Intersection>> getVoisins() {
+        return voisins;
+    }
+
     public void addVoisin(Segment s, Intersection i) {
         if(voisins.isEmpty()) {
             voisins.add(new Pair<Segment, Intersection>(s,i));
@@ -55,7 +61,7 @@ public class Intersection {
             Pair<Segment, Intersection> current = voisins.get(j);
 
             // 1: getting the right index to put the new intersection at, so the list is still sorted.
-            if(current.getL().getLength() > s.getLength() && index == -1) {
+            if(current.getKey().getLength() > s.getLength() && index == -1) {
                 index = j;
                 // no break because we want to check if there is any redundant neighbourhood relationship
                 // (in that case it will be deleted as it will be a longer one).
@@ -64,15 +70,15 @@ public class Intersection {
             }
 
             // 2: if there is a shorter redundancy, the neighborhood relationship won't be added.
-            if(current.getL().getDestination().getId() == s.getDestination().getId()
-            && current.getL().getLength() < s.getLength()) {
+            if(current.getKey().getDestination().getId() == s.getDestination().getId()
+            && current.getKey().getLength() < s.getLength()) {
                 index = -1;
                 break;
             }
 
             // 3 : if there is a longer redundancy, we delete it.
-            else if(current.getL().getDestination().getId() == s.getDestination().getId()
-                    && current.getL().getLength() > s.getLength()) {
+            else if(current.getKey().getDestination().getId() == s.getDestination().getId()
+                    && current.getKey().getLength() > s.getLength()) {
                 voisins.remove(i);
             }
         }

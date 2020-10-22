@@ -1,8 +1,11 @@
 package drawmap.main;
 
-import drawmap.model.*;
-import drawmap.view.*;
-import drawmap.controller.*;
+import drawmap.controller.MapCanvasController;
+import drawmap.model.CityMap;
+import drawmap.model.ComputeTour;
+import drawmap.model.DeliveryTour;
+import drawmap.model.Request;
+import drawmap.view.MapCanvas;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -11,20 +14,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.control.Slider;
-import javafx.scene.layout.VBox;
-import javafx.geometry.Insets;
 
 import java.io.File;
 import java.util.Iterator;
-import java.util.Map;
 
 public class Main extends Application {
+
 
     @Override
     public void start(Stage stage) {
@@ -39,10 +41,10 @@ public class Main extends Application {
 
 
         CityMap cm = new CityMap();
-        //cm.read("./fichiersXML2020/largeMap.xml");
+        cm.read("./fichiersXML2020/smallMap.xml");
 
         DeliveryTour dt = new DeliveryTour();
-        //dt.read("./fichiersXML2020/requestsLarge7.xml", cm);
+        dt.read("./fichiersXML2020/requestsMedium3.xml", cm);
 
         MapCanvas canvas = new MapCanvas(cm, dt,1200, 1000);
         MapCanvasController canvasController = new MapCanvasController(canvas);
@@ -53,7 +55,7 @@ public class Main extends Application {
         slider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                System.out.println(newValue.doubleValue());
+           //     System.out.println(newValue.doubleValue());
                 canvasController.setMapCanvasScale(newValue.doubleValue());
             }
         });
@@ -140,6 +142,7 @@ public class Main extends Application {
         Button but_comp = new Button("Compute tour");
         but_comp.setOnAction(e-> {
             /** TODO : implement tour computing **/
+            ComputeTour.computeTour(cm,dt);
         });
         loadBox.getChildren().add(but_comp);
         but_comp.prefHeightProperty().bind(loadBox.heightProperty());
