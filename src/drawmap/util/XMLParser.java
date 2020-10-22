@@ -75,6 +75,7 @@ public class XMLParser {
                                  String qname, Attributes attrs)
                 throws SAXException {
 
+            System.out.println(qname);
             if (qname == "request") {
                 Long pickupAddress = Long.parseLong(attrs.getValue("pickupAddress"));
                 Long deliveryAddress = Long.parseLong(attrs.getValue("deliveryAddress"));
