@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Vector;
 
 public class ComputeTour {
-    public static void computeTour(CityMap cm, DeliveryTour dt){
+    public static LinkedList<Segment> computeTour(CityMap cm, DeliveryTour dt){
 
         List<Request> requests = dt.getRequests();
         Vector<Intersection> allPoints = new Vector<>();
@@ -36,7 +36,15 @@ public class ComputeTour {
         for (int i=0; i< allPoints.size(); i++)
             System.out.print(tsp.getSolution(i).getId()+" ");
         System.out.println("0");
-
-
+        LinkedList<Segment> chemin = new LinkedList<>();
+        for (int i=0; i< allPoints.size()-1; i++){
+            Intersection inter = tsp.getSolution(i);
+            for (Pair<Segment, Intersection> voisin : inter.getVoisins()) {
+                if(voisin.getValue().getId()==tsp.getSolution(i+1).getId()){
+                    chemin.add(voisin.getKey());
+                }
+            }
+        }
+    return chemin;
     }
 }
