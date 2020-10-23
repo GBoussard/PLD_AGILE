@@ -1,5 +1,7 @@
 package drawmap.view;
 import drawmap.model.*;
+
+import java.util.List;
 import java.util.Map.Entry;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -20,6 +22,7 @@ public class MapCanvas extends Pane {
 
     private CityMap map;
     private DeliveryTour tour;
+    private List<Segment> computedTour;
 
     // geometric attributes and modifiers
     private Integer width;
@@ -101,6 +104,10 @@ public class MapCanvas extends Pane {
 
     }
 
+    public void setComputedTour(List<Segment> tour){
+        this.computedTour = tour;
+    }
+
     public void setScale(double s) {
         this.scale = s;
         a_h = -this.height / scale;
@@ -137,10 +144,10 @@ public class MapCanvas extends Pane {
                 continue;
             }
 
-            compute_x0 = constrain(compute_x0, 0, width);
-            compute_x1 = constrain(compute_x1, 0, width);
-            compute_y0 = constrain(compute_y0, 0, height);
-            compute_y1 = constrain(compute_y1, 0, height);
+//            compute_x0 = constrain(compute_x0, 0, width);
+//            compute_x1 = constrain(compute_x1, 0, width);
+//            compute_y0 = constrain(compute_y0, 0, height);
+//            compute_y1 = constrain(compute_y1, 0, height);
 
 
 
@@ -169,6 +176,9 @@ public class MapCanvas extends Pane {
             this.getChildren().add(l);
         }
 
+
+        //******* DRAW REQUESTS *******
+
         Iterator it_requests = tour.getRequestIterator();
 
         while(it_requests.hasNext()) {
@@ -196,7 +206,44 @@ public class MapCanvas extends Pane {
 
         }
 
+        // ******* DRAW PATH *******
 
+        if(computedTour != null){
+            Iterator it_path = computedTour.iterator();
+            while(it_path.hasNext()){
+                Segment s = (Segment)it_path.next();
+                double x0 = s.getOrigin().getLongitude();
+                double y0 = s.getOrigin().getLatitude();
+                double x1 = s.getDestination().getLongitude();
+                double y1 = s.getDestination().getLatitude();
+
+                double compute_x0 = a_w*x0+b_w;
+                double compute_y0 = a_h*y0+b_h;
+                double compute_x1 = a_w*x1+b_w;
+                double compute_y1 = a_h*y1+b_h;
+
+                if((compute_x0 < 0 && compute_x1 < 0) || (compute_y0 < 0 && compute_y1 < 0) ||
+                        (compute_x0 > width && compute_x1 > width) || (compute_y0 > height && compute_y1 > height)) {
+
+                    continue;
+                }
+
+                compute_x0 = constrain(compute_x0, 0, width);
+                compute_x1 = constrain(compute_x1, 0, width);
+                compute_y0 = constrain(compute_y0, 0, height);
+                compute_y1 = constrain(compute_y1, 0, height);
+
+
+
+                //System.out.println(s.getName());
+                //System.out.println(x0 + " " + (a_w*x0+b_w)+ " " + y0 + " " + (a_h*y0+b_h));
+                Line l = new Line(compute_x0,compute_y0,compute_x1,compute_y1);
+                l.setStrokeWidth(3*(scale/2.0)+5);
+                l.setStrokeType(StrokeType.CENTERED);
+                l.setStroke(Color.BLUE);
+                this.getChildren().add(l);
+            }
+        }
 
     }
 
