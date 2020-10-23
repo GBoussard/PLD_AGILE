@@ -1,10 +1,7 @@
 package drawmap.main;
 
 import drawmap.controller.MapCanvasController;
-import drawmap.model.CityMap;
-import drawmap.model.ComputeTour;
-import drawmap.model.DeliveryTour;
-import drawmap.model.Request;
+import drawmap.model.*;
 import drawmap.view.MapCanvas;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -24,6 +21,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class Main extends Application {
 
@@ -41,10 +39,10 @@ public class Main extends Application {
 
 
         CityMap cm = new CityMap();
-        cm.read("./fichiersXML2020/smallMap.xml");
+        //cm.read("./fichiersXML2020/smallMap.xml");
 
         DeliveryTour dt = new DeliveryTour();
-        dt.read("./fichiersXML2020/requestsMedium3.xml", cm);
+        //dt.read("./fichiersXML2020/requestsMedium3.xml", cm);
 
         MapCanvas canvas = new MapCanvas(cm, dt,1200, 1000);
         MapCanvasController canvasController = new MapCanvasController(canvas);
@@ -142,7 +140,9 @@ public class Main extends Application {
         Button but_comp = new Button("Compute tour");
         but_comp.setOnAction(e-> {
             /** TODO : implement tour computing **/
-            ComputeTour.computeTour(cm,dt);
+            LinkedList<Segment> tour = ComputeTour.computeTour(cm,dt);
+
+            canvas.setComputedTour(tour);
         });
         loadBox.getChildren().add(but_comp);
         but_comp.prefHeightProperty().bind(loadBox.heightProperty());
