@@ -30,21 +30,39 @@ public class ComputeTour {
         CompleteGraph g = new CompleteGraph(cost,allPoints);
         TSP tsp = new TSP1();
         long startTime = System.currentTimeMillis();
-        tsp.searchSolution(180000, g);
+        tsp.searchSolution(180000, g,requests);
         System.out.print("Solution of cost "+tsp.getSolutionCost()+" found in "
                 +(System.currentTimeMillis() - startTime)+"ms : ");
         for (int i=0; i< allPoints.size(); i++)
             System.out.print(tsp.getSolution(i).getId()+" ");
         System.out.println("0");
+        LinkedList<Intersection> cheminInter = new LinkedList<>();
         LinkedList<Segment> chemin = new LinkedList<>();
+
+
         for (int i=0; i< allPoints.size()-1; i++){
+            LinkedList<Intersection> partialWay = new LinkedList<>();
             Intersection inter = tsp.getSolution(i);
-            for (Pair<Segment, Intersection> voisin : inter.getVoisins()) {
-                if(voisin.getValue().getId()==tsp.getSolution(i+1).getId()){
+            partialWay = ways.get(new Pair(inter,tsp.getSolution(i+1))).getKey();
+            cheminInter.addAll(partialWay);
+        }
+        LinkedList<Intersection> partialWay = new LinkedList<>();
+        Intersection inter = tsp.getSolution(allPoints.size()-1);
+        partialWay = ways.get(new Pair(inter,tsp.getSolution(0))).getKey();
+        cheminInter.addAll(partialWay);
+
+        for (int i=0; i< cheminInter.size()-1; i++){
+
+            Intersection current = cheminInter.get(i);
+
+            for (Pair<Segment, Intersection> voisin : current.getVoisins()) {
+                if(voisin.getValue().getId()==cheminInter.get(i+1).getId()){
+ //                   System.out.println("found match");
                     chemin.add(voisin.getKey());
                 }
             }
         }
+
     return chemin;
     }
 }

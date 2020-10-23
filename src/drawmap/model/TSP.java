@@ -1,5 +1,7 @@
 package drawmap.model;
 
+import java.util.List;
+
 public interface TSP {
 	/**
 	 * Search for a shortest cost hamiltonian circuit in <code>g</code> within <code>timeLimit</code> milliseconds
@@ -8,7 +10,7 @@ public interface TSP {
 	 * @param timeLimit
 	 * @param g
 	 */
-	public void searchSolution(int timeLimit, CompleteGraph g);
+	public void searchSolution(int timeLimit, CompleteGraph g, List<Request> requests);
 	
 	/**
 	 * @param i

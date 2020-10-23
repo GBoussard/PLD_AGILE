@@ -3,6 +3,7 @@ package drawmap.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 public abstract class TemplateTSP implements TSP {
 	private Intersection[] bestSol;
@@ -10,9 +11,12 @@ public abstract class TemplateTSP implements TSP {
 	private double bestSolCost;
 	private int timeLimit;
 	private long startTime;
-	
-	public void searchSolution(int timeLimit, CompleteGraph g){
+	private List<Request> requests;
+
+	public void searchSolution(int timeLimit, CompleteGraph g, List<Request> requests){
+
 		if (timeLimit <= 0) return;
+		this.requests = requests;
 		startTime = System.currentTimeMillis();	
 		this.timeLimit = timeLimit;
 		this.g = g;
@@ -80,14 +84,43 @@ public abstract class TemplateTSP implements TSP {
 	        Iterator<Intersection> it = iterator(currentVertex, unvisited, g);
 	        while (it.hasNext()){
 				Intersection nextVertex = it.next();
-	        	visited.add(nextVertex);
-	            unvisited.remove(nextVertex);
-	            branchAndBound(nextVertex, unvisited, visited, 
-	            		currentCost+g.getCost(currentVertex, nextVertex));
-	            visited.remove(nextVertex);
-	            unvisited.add(nextVertex);
+				if(isAllowed(nextVertex,visited)){
+
+					visited.add(nextVertex);
+					unvisited.remove(nextVertex);
+
+					branchAndBound(nextVertex, unvisited, visited,
+							currentCost+g.getCost(currentVertex, nextVertex));
+
+					visited.remove(nextVertex);
+					unvisited.add(nextVertex);
+				}
+
 	        }	    
 	    }
+	}
+	private boolean isAllowed(Intersection inter, Collection<Intersection> visited){
+
+		Intersection associatedPickup;
+		for (Request req : requests) {
+			if(req.getPickup().getId()==inter.getId()){
+				return true;
+			}
+		}
+		for (Request req : requests) {
+			if(req.getDelivery().getId()==inter.getId()){
+
+				associatedPickup = req.getPickup();
+				if(visited.contains(associatedPickup)){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
+
+
+		return false;
 	}
 
 }

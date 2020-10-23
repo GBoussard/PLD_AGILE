@@ -1,22 +1,20 @@
 package drawmap.view;
-import drawmap.model.*;
-
-import java.util.List;
-import java.util.Map.Entry;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
+import drawmap.model.CityMap;
+import drawmap.model.DeliveryTour;
+import drawmap.model.Request;
+import drawmap.model.Segment;
 import javafx.scene.layout.Pane;
-import javafx.scene.Group;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
-import javafx.scene.paint.Color;
-import javafx.scene.control.Slider;
-//https://docs.oracle.com/javafx/2/ui_controls/slider.htm and https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Slider.html and http://johnthecodingarchitect.blogspot.com/2013/11/scaling-vs-zooming-in-javafx.html
 
 import java.util.Iterator;
+import java.util.List;
+
+//https://docs.oracle.com/javafx/2/ui_controls/slider.htm and https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Slider.html and http://johnthecodingarchitect.blogspot.com/2013/11/scaling-vs-zooming-in-javafx.html
 
 public class MapCanvas extends Pane {
 
