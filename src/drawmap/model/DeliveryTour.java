@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * 
  */
-public class DeliveryTour {
+public class DeliveryTour extends Observable{
 
     /**
      * Default constructor
@@ -18,7 +18,7 @@ public class DeliveryTour {
     /**
      * 
      */
-    private List<Request> requests= new ArrayList<Request>();
+    private List<Request> requests = new ArrayList<Request>();
     private Date departureTime;
 
     public Intersection getOrigin() {
@@ -32,8 +32,11 @@ public class DeliveryTour {
     private Intersection origin;
 
     public void read(String filename, CityMap cm){
+        this.requests = new ArrayList<Request>();
         XMLParser parser = new XMLParser();
         parser.parseTour(filename, this, cm);
+        setChanged();
+        notifyObservers();
     }
 
     public List<Request> getRequests() {

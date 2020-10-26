@@ -6,15 +6,17 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Observable;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.parsers.SAXParser;
 
-public class CityMap {
+public class CityMap extends Observable {
 
     private HashMap<Long, Intersection> map_intersection;
     private ArrayList<Segment> list_segment;
 
     public CityMap() {
+        super();
         map_intersection = new HashMap<Long, Intersection>();
         list_segment = new ArrayList<Segment>();
     }
@@ -23,6 +25,8 @@ public class CityMap {
         this.clearMap();
         XMLParser parser = new XMLParser();
         parser.parseMap(file, this);
+        setChanged();
+        notifyObservers();
     }
 
     public void clearMap() {

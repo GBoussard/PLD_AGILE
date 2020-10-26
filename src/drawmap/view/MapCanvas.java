@@ -1,8 +1,5 @@
 package drawmap.view;
-import drawmap.model.CityMap;
-import drawmap.model.DeliveryTour;
-import drawmap.model.Request;
-import drawmap.model.Segment;
+import drawmap.model.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -13,14 +10,16 @@ import javafx.scene.text.Text;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 //https://docs.oracle.com/javafx/2/ui_controls/slider.htm and https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Slider.html and http://johnthecodingarchitect.blogspot.com/2013/11/scaling-vs-zooming-in-javafx.html
 
-public class MapCanvas extends Pane {
+public class MapCanvas extends Pane implements Observer {
 
     private CityMap map;
     private DeliveryTour tour;
-    private List<Segment> computedTour;
+    private ComputeTour computedTour;
 
     // geometric attributes and modifiers
     private Integer width;
@@ -37,7 +36,7 @@ public class MapCanvas extends Pane {
     //control attributes
     private Double old_x=null, old_y = null;
 
-    public MapCanvas(CityMap m, DeliveryTour dt, Integer width, Integer height) {
+    public MapCanvas(CityMap m, DeliveryTour dt, ComputeTour ct,Integer width, Integer height){
         super();
         this.setHeight(height);
         this.setWidth(width);
@@ -47,7 +46,11 @@ public class MapCanvas extends Pane {
         this.height = height;
         this.map = m;
         this.tour = dt;
+        this.computedTour = ct;
 
+        map.addObserver(this);
+        tour.addObserver(this);
+        computedTour.addObserver(this);
 
         a_h = -this.height / scale;
         b_h = (-1.0)*a_h*offset_h;
@@ -102,9 +105,6 @@ public class MapCanvas extends Pane {
 
     }
 
-    public void setComputedTour(List<Segment> tour){
-        this.computedTour = tour;
-    }
 
     public void setScale(double s) {
         this.scale = s;
@@ -206,8 +206,8 @@ public class MapCanvas extends Pane {
 
         // ******* DRAW PATH *******
 
-        if(computedTour != null){
-            Iterator it_path = computedTour.iterator();
+        if(computedTour.getComputed()){
+            Iterator it_path = computedTour.getPathIterator();
             while(it_path.hasNext()){
                 Segment s = (Segment)it_path.next();
                 double x0 = s.getOrigin().getLongitude();
@@ -251,4 +251,9 @@ public class MapCanvas extends Pane {
         return value;
     }
 
+
+    @Override
+    public void update(Observable o, Object arg) {
+        this.drawMap();
+    }
 }

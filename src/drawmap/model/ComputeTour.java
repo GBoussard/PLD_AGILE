@@ -2,14 +2,29 @@ package drawmap.model;
 
 import javafx.util.Pair;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 
-public class ComputeTour {
-    public static LinkedList<Segment> computeTour(CityMap cm, DeliveryTour dt){
+public class ComputeTour extends Observable{
 
+    public static final double speed = 15/3.6; //speed is 15km/h so 15/3.6 m/s
+
+    private List<Intersection> cheminInter;
+    private List<Segment> chemin;
+    private List<Pair<Intersection, Date>> intersectionsDate; //Useful for TextualView
+    private boolean computed;
+
+    private CityMap cm;
+    private DeliveryTour dt;
+
+    public ComputeTour(CityMap cm, DeliveryTour dt){
+        this.cm = cm;
+        this.dt = dt;
+        this.computed = false;
+    }
+
+    public void computeTour(){
+
+        intersectionsDate = new LinkedList<Pair<Intersection, Date>>();
         List<Request> requests = dt.getRequests();
         Vector<Intersection> allPoints = new Vector<>();
         requests.forEach(e->{
@@ -36,8 +51,8 @@ public class ComputeTour {
         for (int i=0; i< allPoints.size(); i++)
             System.out.print(tsp.getSolution(i).getId()+" ");
         System.out.println("0");
-        LinkedList<Intersection> cheminInter = new LinkedList<>();
-        LinkedList<Segment> chemin = new LinkedList<>();
+        cheminInter = new LinkedList<>();
+        chemin = new LinkedList<>();
 
 
         for (int i=0; i< allPoints.size()-1; i++){
@@ -51,6 +66,8 @@ public class ComputeTour {
         partialWay = ways.get(new Pair(inter,tsp.getSolution(0))).getKey();
         cheminInter.addAll(partialWay);
 
+        intersectionsDate.add(new Pair(cheminInter.get(0), dt.getDepartureTime()));
+
         for (int i=0; i< cheminInter.size()-1; i++){
 
             Intersection current = cheminInter.get(i);
@@ -59,10 +76,29 @@ public class ComputeTour {
                 if(voisin.getValue().getId()==cheminInter.get(i+1).getId()){
  //                   System.out.println("found match");
                     chemin.add(voisin.getKey());
+                    int timeToTravel = (int) (voisin.getKey().getLength() / speed); //time is in second
+                    long nextDate = intersectionsDate.get(intersectionsDate.size() - 1 ).getValue().getTime() + 1000 * timeToTravel;
+                    intersectionsDate.add(new Pair(voisin.getValue(), new Date(nextDate)));
                 }
             }
         }
 
-    return chemin;
+        computed = true;
+        setChanged();
+        notifyObservers();
+
+    }
+
+    public Iterator<Segment> getPathIterator(){
+        if(chemin != null){
+            return chemin.iterator();
+        }
+        else{
+            return null;
+        }
+    }
+
+    public boolean getComputed(){
+        return computed;
     }
 }
