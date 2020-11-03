@@ -144,6 +144,6 @@ public class MainView extends Application {
     }
 
     public void setMapCanvasScale(double scale){
-
+        mapCanvas.setScale(scale);
     }
 }
