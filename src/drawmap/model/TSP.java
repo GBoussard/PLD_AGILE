@@ -10,16 +10,16 @@ public interface TSP {
 	 * @param timeLimit
 	 * @param g
 	 */
-	public void searchSolution(int timeLimit, CompleteGraph g, List<Request> requests);
-	
+	public void searchSolution(int timeLimit, CompleteGraph g, List<Request> requests, Intersection depot);
+
 	/**
 	 * @param i
-	 * @return the ith visited vertex in the solution computed by <code>searchSolution</code> 
+	 * @return the ith visited vertex in the solution computed by <code>searchSolution</code>
 	 * (-1 if <code>searcheSolution</code> has not been called yet, or if i < 0 or i >= g.getNbSommets())
 	 */
-	public Intersection getSolution(int i);
-	
-	/** 
+	public Long getSolution(int i);
+
+	/**
 	 * @return the total cost of the solution computed by <code>searchSolution</code> 
 	 * (-1 if <code>searcheSolution</code> has not been called yet).
 	 */

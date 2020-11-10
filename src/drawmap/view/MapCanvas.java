@@ -9,7 +9,6 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -180,6 +179,21 @@ public class MapCanvas extends Pane implements Observer {
         Iterator it_requests = tour.getRequestIterator();
 
         while(it_requests.hasNext()) {
+            Intersection depot = tour.getOrigin();
+            double depot_x = depot.getLongitude();
+            double depot_y = depot.getLatitude();
+
+
+            double compute_depot_x = constrain(a_w*depot_x+b_w,0,width);
+            double compute_depot_y = constrain(a_h*depot_y+b_h, 0, height);
+
+
+
+
+            Rectangle rect_depot = new Rectangle(compute_depot_x, compute_depot_y, 20, 20);
+            rect_depot.setFill(Color.BLACK);
+            this.getChildren().add(rect_depot);
+
             Request r = (Request) it_requests.next();
 
             double x0 = r.getPickup().getLongitude();
@@ -207,6 +221,7 @@ public class MapCanvas extends Pane implements Observer {
         // ******* DRAW PATH *******
 
         if(computedTour.getComputed()){
+
             Iterator it_path = computedTour.getPathIterator();
             while(it_path.hasNext()){
                 Segment s = (Segment)it_path.next();
