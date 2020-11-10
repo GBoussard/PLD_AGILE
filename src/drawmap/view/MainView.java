@@ -1,7 +1,6 @@
 package drawmap.view;
 
 import drawmap.controller.Controller;
-import drawmap.model.*;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,31 +8,27 @@ import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.Iterator;
-import java.util.LinkedList;
 
 public class MainView extends Application {
 
     private Stage stage;
     private Controller controller;
     private MapCanvas mapCanvas;
+    private RequestView requestView;
 
     @Override
     public void start(Stage stage) {
 
         this.stage = stage;
         this.controller = new Controller(this);
-
         initUI(stage);
 
     }
@@ -43,9 +38,7 @@ public class MainView extends Application {
 
         Pane root = new HBox();
 
-
-
-        mapCanvas = new MapCanvas(controller.getCityMap(), controller.getDeliveryTour(), controller.getComputeTour(),1200, 1000);
+        mapCanvas = new MapCanvas(controller.getCityMap(), controller.getDeliveryTour(), controller.getComputeTour(),1200, 1000, this.controller);
         root.getChildren().add(mapCanvas);
 
         Slider slider = new Slider(0.02, 0.05,0.05);
@@ -64,8 +57,10 @@ public class MainView extends Application {
 
         HBox loadBox = new HBox(10);
         textualView.getChildren().add(loadBox);
-        VBox requestBox = new VBox();
-        textualView.getChildren().add(requestBox);
+
+        requestView = new RequestView(controller.getDeliveryTour(), controller.getComputeTour(), this.controller);
+        textualView.getChildren().add(requestView);
+
 
         loadBox.setPrefSize(400,200);
         Button but_map = new Button("Load a map");
@@ -102,10 +97,7 @@ public class MainView extends Application {
         but_comp.prefWidthProperty().bind(loadBox.widthProperty().divide(3));
 
 
-
-
         root.getChildren().add(textualView);
-
         Scene scene = new Scene(root, 1920, 1000);
         mapCanvas.drawMap();
         stage.setTitle("Lines");
@@ -146,4 +138,13 @@ public class MainView extends Application {
     public void setMapCanvasScale(double scale){
 
     }
+
+    public void focusClickedRequestInMap(String intersectionId){
+        this.mapCanvas.highlighClickedRequest(intersectionId);
+    }
+
+    public void focusClickedRequestInRequestView(String intersectionId) {
+        this.requestView.highlighClickedRequest(intersectionId);
+    }
+
 }

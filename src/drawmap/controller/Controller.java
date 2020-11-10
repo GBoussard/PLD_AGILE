@@ -27,6 +27,8 @@ public class Controller {
         ct = new ComputeTour(cm, dt);
     }
 
+
+
     public void setMapCanvasScale(double s) {
         mainView.setMapCanvasScale(s);
     }
@@ -61,4 +63,11 @@ public class Controller {
         ct.computeTour();
     }
 
+    public void focusClickedRequestPointInMap(String intersectionId) {
+        this.mainView.focusClickedRequestInMap(intersectionId);
+    }
+
+    public void focusClickedRequestPointInRequestView(String intersectionId) {
+        this.mainView.focusClickedRequestInRequestView(intersectionId);
+    }
 }

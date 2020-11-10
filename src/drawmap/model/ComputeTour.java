@@ -1,5 +1,6 @@
 package drawmap.model;
 
+import javafx.scene.Node;
 import javafx.util.Pair;
 
 import java.util.*;
@@ -92,6 +93,15 @@ public class ComputeTour extends Observable{
     public Iterator<Segment> getPathIterator(){
         if(chemin != null){
             return chemin.iterator();
+        }
+        else{
+            return null;
+        }
+    }
+
+    public Iterator<Pair<Intersection, Date>> getIntersectionsDateIterator(){
+        if(intersectionsDate != null){
+            return intersectionsDate.iterator();
         }
         else{
             return null;
