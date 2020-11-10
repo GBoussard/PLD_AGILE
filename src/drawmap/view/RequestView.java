@@ -12,6 +12,11 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
+import org.omg.CORBA.INTERNAL;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -103,7 +108,15 @@ public class RequestView extends Pane implements Observer {
                 String date =  df.format(d);
 
                 // on genere la feuille de route
-                roadMap += "Long: "+ intersectionLong + ", Lat: "+ intersectionLat + ", Date: "+date+"\n";
+
+                roadMap = "Intersection de :\n";
+
+                ArrayList<Pair<Segment, Intersection>> voisins = i.getVoisins();
+                for( Pair<Segment, Intersection> v : voisins){
+                    roadMap += v.getKey().getName()+" \n ";
+                }
+
+                roadMap += "\n";
 
                 // pour chaque intersection on va chercher dans la liste des requetes du delivery tour
                 // si elle y est, on affiche
@@ -116,6 +129,17 @@ public class RequestView extends Pane implements Observer {
 
             }
             // crée un fichier text avec la chaine roadMap
+            System.out.println("ROADMAP");
+            System.out.println(roadMap);
+            try {
+                FileWriter myWriter = new FileWriter("Roadmap.txt");
+                myWriter.write(roadMap);
+                myWriter.close();
+                System.out.println("Successfully wrote to the file.");
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
 
             // on rajoute le temps total pour faire la tournée
             it_compute_tour = computedTour.getIntersectionsDateIterator();
@@ -175,19 +199,26 @@ public class RequestView extends Pane implements Observer {
         double pickupLong = i.getLongitude();
         double pickupLat = i.getLatitude();
 
+        String streets = "Intersection de :\n";
+
+        ArrayList<Pair<Segment, Intersection>> voisins = i.getVoisins();
+        for( Pair<Segment, Intersection> p : voisins){
+            streets += p.getKey().getName()+" \n ";
+        }
+
+        streets += "\n";
+
         this.countNbRequestPrinted++;
         Label numero_pickup = new Label(this.countNbRequestPrinted+") ");
-
-
-        Text pickupLongitudeText = new Text("Long: "+pickupLong);
-        Text pickupLatitudeText = new Text("Lat: "+pickupLat);
+        
+        Text intersectionStreets = new Text(streets);
         Text DurationText = new Text("Duration: "+(duration / 60)+" minute(s)");
 
-        Button pickupButton = new Button();
+        Button intersectionButton = new Button();
         String round = (this.countNbRequestPrinted % 2 == 1) ? "-fx-background-radius: 50em;" : "";
-        pickupButton.setStyle("-fx-background-color: "+toHexString(color)+";"+round);
+        intersectionButton.setStyle("-fx-background-color: "+toHexString(color)+";"+round);
 
-        contener.getChildren().addAll(numero_pickup, pickupButton, pickupLongitudeText, pickupLatitudeText , DurationText);
+        contener.getChildren().addAll(numero_pickup, intersectionButton, intersectionStreets , DurationText);
         contener.addEventFilter(MouseEvent.MOUSE_CLICKED, new HBoxClickHandler(i.getId().toString(), this.controller, this));
         return contener;
     }
