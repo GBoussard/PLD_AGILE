@@ -210,21 +210,15 @@ public class MapCanvas extends Pane implements Observer {
 
         while(it_requests.hasNext()) {
             /**
-            Intersection depot = tour.getOrigin();
-            double depot_x = depot.getLongitude();
-            double depot_y = depot.getLatitude();
-
-
-            double compute_depot_x = constrain(a_w*depot_x+b_w,0,width);
-            double compute_depot_y = constrain(a_h*depot_y+b_h, 0, height);
-
-
-
-
-            Rectangle rect_depot = new Rectangle(compute_depot_x, compute_depot_y, 20, 20);
-            rect_depot.setFill(Color.BLACK);
-            this.getChildren().add(rect_depot);
-            **/
+             Intersection depot = tour.getOrigin();
+             double depot_x = depot.getLongitude();
+             double depot_y = depot.getLatitude();
+             double compute_depot_x = constrain(a_w*depot_x+b_w,0,width);
+             double compute_depot_y = constrain(a_h*depot_y+b_h, 0, height);
+             Rectangle rect_depot = new Rectangle(compute_depot_x, compute_depot_y, 20, 20);
+             rect_depot.setFill(Color.BLACK);
+             this.getChildren().add(rect_depot);
+             **/
 
             Request r = (Request) it_requests.next();
 

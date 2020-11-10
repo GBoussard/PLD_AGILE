@@ -12,7 +12,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
-import org.omg.CORBA.INTERNAL;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -88,11 +87,11 @@ public class RequestView extends Pane implements Observer {
         DateFormat df = new SimpleDateFormat("HH:mm:ss");
         String roadMap = "";
         int num = 0;
+        Boolean neighboorsHaveName = false;
 
         // on affiche le depot
         HBox depotContener = this.createLineInfosAboutIntersection(this.tour.getOrigin(), Color.RED, 0);
         verticalrequestContainer.getChildren().addAll(depotContener);
-
         if (this.computedTour.getComputed()){
             Iterator it_compute_tour = computedTour.getIntersectionsDateIterator();
 
@@ -109,11 +108,20 @@ public class RequestView extends Pane implements Observer {
 
                 // on genere la feuille de route
 
-                roadMap = "Intersection de :\n";
+                roadMap += "Intersection de :\n";
 
+                neighboorsHaveName = false;
                 ArrayList<Pair<Segment, Intersection>> voisins = i.getVoisins();
                 for( Pair<Segment, Intersection> v : voisins){
-                    roadMap += v.getKey().getName()+" \n ";
+                    String name = v.getKey().getName();
+                    if (!name.equals("")){
+                        roadMap += v.getKey().getName()+" \n ";
+                        neighboorsHaveName = true;
+                    }
+                }
+
+                if (!neighboorsHaveName){
+                    roadMap += "Long: "+intersectionLong+" , Lat: "+intersectionLat+"\n";
                 }
 
                 roadMap += "\n";
@@ -121,16 +129,18 @@ public class RequestView extends Pane implements Observer {
                 // pour chaque intersection on va chercher dans la liste des requetes du delivery tour
                 // si elle y est, on affiche
                 for (Request r: requests){
-                    if (r.getPickup().getId() == intersectionId || r.getDelivery().getId() ==  intersectionId){
+                    if (r.getPickup().getId() == intersectionId) {
+                        HBox PickupContener = this.createLineInfosAboutIntersection(r.getPickup(), r.getColor(), r.getPickupDuration());
+                        verticalrequestContainer.getChildren().add(PickupContener);
+                    }
+                    else if(r.getDelivery().getId() ==  intersectionId){
                         HBox intersectionContener = this.createLineInfosAboutIntersection(r.getDelivery(), r.getColor(), r.getDeliveryDuration());
                         verticalrequestContainer.getChildren().add(intersectionContener);
                     }
                 }
 
             }
-            // crée un fichier text avec la chaine roadMap
-            System.out.println("ROADMAP");
-            System.out.println(roadMap);
+
             try {
                 FileWriter myWriter = new FileWriter("Roadmap.txt");
                 myWriter.write(roadMap);
