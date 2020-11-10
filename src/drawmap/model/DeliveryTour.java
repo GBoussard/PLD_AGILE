@@ -47,6 +47,8 @@ public class DeliveryTour extends Observable{
         requests.add(r);
     }
 
+    public void removeRequest(Request r) { requests.remove(r); }
+
     public Date getDepartureTime(){
         return  departureTime;
     }

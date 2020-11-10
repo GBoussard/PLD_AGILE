@@ -3,6 +3,7 @@ package drawmap.controller;
 import drawmap.model.CityMap;
 import drawmap.model.ComputeTour;
 import drawmap.model.DeliveryTour;
+import drawmap.model.Request;
 import drawmap.view.MainView;
 import drawmap.view.MapCanvas;
 import javafx.application.Application;
@@ -18,6 +19,8 @@ public class Controller {
     private DeliveryTour dt;
     private ComputeTour ct;
     private MainView mainView;
+    private State currentState;
+    private ListOfCommands l;
 
 
     public Controller(MainView mainView) {
@@ -25,30 +28,49 @@ public class Controller {
         cm = new CityMap();
         dt = new DeliveryTour();
         ct = new ComputeTour(cm, dt);
+        currentState = new InitialState();
     }
 
 
+
+    public void undo(){
+        currentState.undo(l);
+    }
+
+    public void redo(){
+        currentState.redo(l);
+    }
+
+    public void addRequest(Request request){
+        currentState.addRequest(this, request, l);
+    }
+
+    public void removeRequest(Request request){
+        currentState.removeRequest(this, request, l);
+    }
 
     public void setMapCanvasScale(double s) {
         mainView.setMapCanvasScale(s);
     }
 
     public void loadMap(){
-        File map = mainView.chooseFile("Choose a map file");
-        if(map != null){
-            cm.read(map.getAbsolutePath());
-        }
+        currentState.loadMap(this);
+        currentState = new MapLoadedState();
     }
 
     public void loadRequest(){
-        File dt = mainView.chooseFile("Choose a requests file");
-        if(dt != null){
-            this.dt.read(dt.getAbsolutePath(), this.cm);
-        }
+        currentState.loadRequests(this);
+        currentState = new RequestsLoadedState();
     }
+
+
 
     public DeliveryTour getDeliveryTour() {
         return dt;
+    }
+
+    public MainView getMainView(){
+        return mainView;
     }
 
     public CityMap getCityMap() {
@@ -60,14 +82,15 @@ public class Controller {
     }
 
     public void computeTour(){
-        ct.computeTour();
+        currentState.computeTour(this);
+        currentState = new ComputedTourState();
     }
 
     public void focusClickedRequestPointInMap(String intersectionId) {
-        this.mainView.focusClickedRequestInMap(intersectionId);
+        currentState.highlightRequestPointInMap(this, intersectionId);
     }
 
     public void focusClickedRequestPointInRequestView(String intersectionId) {
-        this.mainView.focusClickedRequestInRequestView(intersectionId);
+        currentState.highlightRequestPointInRequestView(this, intersectionId);
     }
 }
