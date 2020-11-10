@@ -1,16 +1,20 @@
 package drawmap.view;
+import drawmap.controller.Controller;
 import drawmap.model.*;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.StrokeType;
+import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.function.Predicate;
 
 //https://docs.oracle.com/javafx/2/ui_controls/slider.htm and https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Slider.html and http://johnthecodingarchitect.blogspot.com/2013/11/scaling-vs-zooming-in-javafx.html
 
@@ -19,6 +23,7 @@ public class MapCanvas extends Pane implements Observer {
     private CityMap map;
     private DeliveryTour tour;
     private ComputeTour computedTour;
+    private Controller controller;
 
     // geometric attributes and modifiers
     private Integer width;
@@ -35,7 +40,7 @@ public class MapCanvas extends Pane implements Observer {
     //control attributes
     private Double old_x=null, old_y = null;
 
-    public MapCanvas(CityMap m, DeliveryTour dt, ComputeTour ct,Integer width, Integer height){
+    public MapCanvas(CityMap m, DeliveryTour dt, ComputeTour ct,Integer width, Integer height, Controller c){
         super();
         this.setHeight(height);
         this.setWidth(width);
@@ -46,6 +51,7 @@ public class MapCanvas extends Pane implements Observer {
         this.map = m;
         this.tour = dt;
         this.computedTour = ct;
+        this.controller = c;
 
         map.addObserver(this);
         tour.addObserver(this);
@@ -112,12 +118,24 @@ public class MapCanvas extends Pane implements Observer {
         drawMap();
     }
 
+    private class HBoxClickHandler implements EventHandler<Event> {
+        private String IntersectionId;
+        private Controller controller;
+
+        public HBoxClickHandler(String intersectionId, Controller c){
+            this.IntersectionId = intersectionId;
+            this.controller = c;
+        }
+        @Override
+        public void handle(Event evt) {
+            this.controller.focusClickedRequestPointInRequestView(this.IntersectionId);
+        }
+    }
+
     public void drawMap() {
         this.getChildren().clear();
         Iterator it_segment = this.map.getSegmentIterator();
 
-
-        //System.out.println(a_w + " " + b_w + " " + a_h + " " + b_h);
 
         // ******* DRAW ROADS *******
 
@@ -174,7 +192,24 @@ public class MapCanvas extends Pane implements Observer {
 
         Iterator it_requests = tour.getRequestIterator();
 
+        // on affiche le depot
+        Intersection depot = this.tour.getOrigin();
+        if (depot != null){
+            double depotLong = depot.getLongitude();
+            double depotLat = depot.getLatitude();
+
+            double compute_x0 = constrain(a_w*depotLong+b_w,0,width);
+            double compute_y0 = constrain(a_h*depotLat+b_h, 0, height);
+            Circle circ_depot = new Circle(compute_x0, compute_y0,10);
+            circ_depot.setFill(Color.RED);
+            circ_depot.setId(depot.getId().toString());
+            circ_depot.addEventFilter(MouseEvent.MOUSE_CLICKED, new HBoxClickHandler(depot.getId().toString(), this.controller));
+
+            this.getChildren().addAll(circ_depot);
+        }
+
         while(it_requests.hasNext()) {
+            /**
             Intersection depot = tour.getOrigin();
             double depot_x = depot.getLongitude();
             double depot_y = depot.getLatitude();
@@ -189,6 +224,7 @@ public class MapCanvas extends Pane implements Observer {
             Rectangle rect_depot = new Rectangle(compute_depot_x, compute_depot_y, 20, 20);
             rect_depot.setFill(Color.BLACK);
             this.getChildren().add(rect_depot);
+            **/
 
             Request r = (Request) it_requests.next();
 
@@ -203,14 +239,21 @@ public class MapCanvas extends Pane implements Observer {
             double compute_y1 = constrain(a_h*y1+b_h, 0, height);
 
 
-
             Rectangle rect_origin = new Rectangle(compute_x0, compute_y0, 20, 20);
+            rect_origin.setId(r.getPickup().getId().toString());
             rect_origin.setFill(r.getColor());
             Circle circle_destination = new Circle(compute_x1,compute_y1,10);
+            circle_destination.setId(r.getDelivery().getId().toString());
             circle_destination.setFill(r.getColor());
+
+            rect_origin.addEventFilter(MouseEvent.MOUSE_CLICKED, new HBoxClickHandler(r.getPickup().getId().toString(), this.controller));
+            circle_destination.addEventFilter(MouseEvent.MOUSE_CLICKED, new HBoxClickHandler(r.getDelivery().getId().toString(), this.controller));
+
 
             this.getChildren().add(rect_origin);
             this.getChildren().add(circle_destination);
+
+
 
         }
 
@@ -270,5 +313,17 @@ public class MapCanvas extends Pane implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         this.drawMap();
+    }
+
+    public static Predicate<Node> idEquals(String id) {
+        return p -> p.getId() != null && p.getId().equals(id);
+    }
+
+    public void highlighClickedRequest(String intersectionId) {
+        List<Node> l = this.getChildren().filtered(idEquals(intersectionId));
+        if (l.size() == 1) {
+            Shape intersectionToHighligh = (Shape) l.get(0);
+            intersectionToHighligh.setFill(Color.BLACK);
+        }
     }
 }
