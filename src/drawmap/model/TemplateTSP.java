@@ -109,6 +109,7 @@ public abstract class TemplateTSP implements TSP {
 		if(inter.nodeType==NodeType.Pickup||inter.nodeType==NodeType.Depot){
 			return true;
 		}
+
 		for (Request req : requests) {
 			if(req.getDelivery().getId()==inter.id){
 				associatedPickup = req.getPickup().getId();
