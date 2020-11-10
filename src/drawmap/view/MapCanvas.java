@@ -96,14 +96,12 @@ public class MapCanvas extends Pane implements Observer {
 
         this.setOnScroll(s-> {
             //System.out.println(s.getTextDeltaY());
-            scale+= 0.005*Math.signum(s.getTextDeltaY());
-            scale = constrain(scale, 0.02, 2);
+            scale+= 0.0025*Math.signum(s.getTextDeltaY());
+            scale = constrain(scale, 0.0005, 10);
             a_h = -this.height / scale;
             b_h = (-1.0)*a_h*offset_h;
             a_w = -a_h;
             b_w = (-1.0)*a_w*offset_w;
-
-
             drawMap();
         });
 
@@ -163,8 +161,6 @@ public class MapCanvas extends Pane implements Observer {
 //            compute_x1 = constrain(compute_x1, 0, width);
 //            compute_y0 = constrain(compute_y0, 0, height);
 //            compute_y1 = constrain(compute_y1, 0, height);
-
-
 
             //System.out.println(s.getName());
             //System.out.println(x0 + " " + (a_w*x0+b_w)+ " " + y0 + " " + (a_h*y0+b_h));
@@ -264,8 +260,8 @@ public class MapCanvas extends Pane implements Observer {
         // ******* DRAW PATH *******
 
         if(computedTour.getComputed()){
-
             Iterator it_path = computedTour.getPathIterator();
+            int arrowNumber = 1;
             while(it_path.hasNext()){
                 Segment s = (Segment)it_path.next();
                 double x0 = s.getOrigin().getLongitude();
@@ -284,20 +280,24 @@ public class MapCanvas extends Pane implements Observer {
                     continue;
                 }
 
-                compute_x0 = constrain(compute_x0, 0, width);
-                compute_x1 = constrain(compute_x1, 0, width);
-                compute_y0 = constrain(compute_y0, 0, height);
-                compute_y1 = constrain(compute_y1, 0, height);
-
-
-
                 //System.out.println(s.getName());
                 //System.out.println(x0 + " " + (a_w*x0+b_w)+ " " + y0 + " " + (a_h*y0+b_h));
-                Line l = new Line(compute_x0,compute_y0,compute_x1,compute_y1);
+          /*      Line l = new Line(compute_x0,compute_y0,compute_x1,compute_y1);
                 l.setStrokeWidth(3*(scale/2.0)+5);
                 l.setStrokeType(StrokeType.CENTERED);
-                l.setStroke(Color.BLUE);
-                this.getChildren().add(l);
+                l.setStroke(Color.BLUE);*/
+
+                Arrow a = new Arrow(compute_x0,compute_y0,compute_x1,compute_y1,scale);
+
+                Text number = new Text(String.valueOf(arrowNumber));
+                arrowNumber++;
+
+                number.setX(compute_x0 + 1.4*(compute_x1 - compute_x0)/2.0);
+                number.setY(compute_y0 + 1.4*(compute_y1 - compute_y0)/2.0);
+                number.setStroke(Color.RED);
+
+                this.getChildren().add(a);
+                this.getChildren().add(number);
             }
         }
 

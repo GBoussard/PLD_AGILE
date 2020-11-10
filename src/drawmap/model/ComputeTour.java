@@ -90,16 +90,16 @@ public class ComputeTour extends Observable{
         Long inter = tsp.getSolution(allPoints.size());
         partialWay = ways.get(new Pair(inter,tsp.getSolution(0))).getKey();
         cheminInter.addAll(partialWay);
-
+        intersectionsDate.add(new Pair(depot, dt.getDepartureTime()));
         for (int i=0; i< cheminInter.size()-1; i++){
             Intersection current = cheminInter.get(i);
             for (Pair<Segment, Intersection> voisin : current.getVoisins()) {
                 if(voisin.getValue().getId()==cheminInter.get(i+1).getId()){
- //                   System.out.println("found match");
+
                     chemin.add(voisin.getKey());
-           //         int timeToTravel = (int) (voisin.getKey().getLength() / speed); //time is in second
-           //         long nextDate = intersectionsDate.get(intersectionsDate.size() - 1 ).getValue().getTime() + 1000 * timeToTravel;
-           //         intersectionsDate.add(new Pair(voisin.getValue(), new Date(nextDate)));
+                    int timeToTravel = (int) (voisin.getKey().getLength() / speed); //time is in second
+                    long nextDate = intersectionsDate.get(intersectionsDate.size() - 1 ).getValue().getTime() + 1000 * timeToTravel;
+                    intersectionsDate.add(new Pair(voisin.getValue(), new Date(nextDate)));
                 }
             }
         }

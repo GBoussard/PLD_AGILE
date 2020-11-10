@@ -41,7 +41,7 @@ public class MainView extends Application {
         mapCanvas = new MapCanvas(controller.getCityMap(), controller.getDeliveryTour(), controller.getComputeTour(),1200, 1000, this.controller);
         root.getChildren().add(mapCanvas);
 
-        Slider slider = new Slider(0.02, 0.05,0.05);
+        Slider slider = new Slider(0.005, 0.15,0.05);
         slider.setOrientation(Orientation.VERTICAL);
         slider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
