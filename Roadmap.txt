@@ -1,0 +1,1014 @@
+Intersection de :
+Avenue des Colonnes 
+ 
+Intersection de :
+Avenue Pasteur 
+ 
+Intersection de :
+Rue Villard 
+ Avenue Pasteur 
+ 
+Intersection de :
+Rue Villard 
+ Rue Villard 
+ Rue Carnot 
+ 
+Intersection de :
+Rue Villard 
+ Avenue du Bois 
+ 
+Intersection de :
+Rue du Square 
+ Avenue du Bois 
+ 
+Intersection de :
+Rue du Square 
+ Rue du Square 
+ Rue Docteur Charles Faguin 
+ 
+Intersection de :
+Rue du Square 
+ Rue des Roses 
+ Rue des Roses 
+ 
+Intersection de :
+Rue Jean Jaurès 
+ Rue Jean Jaurès 
+ 
+Intersection de :
+Rue Jean Jaurès 
+ Rue Jean Jaurès 
+ Rue Emile Bender 
+ 
+Intersection de :
+Rue Jean Jaurès 
+ Rue Jean Voillot 
+ Rue Jean Voillot 
+ Rue Jean Jaurès 
+ 
+Intersection de :
+Rue de la Paix 
+ Rue Jean Jaurès 
+ Rue Neuve des Essarts 
+ 
+Intersection de :
+Rue de la Paix 
+ Rue de la Paix 
+ Impasse Calmard 
+ 
+Intersection de :
+Rue de la Paix 
+ Rue de la Paix 
+ Rue de l'Humanité 
+ 
+Intersection de :
+Rue de la Paix 
+ Rue de la Paix 
+ Rue des Iris 
+ 
+Intersection de :
+Rue de la Paix 
+ Rue de la Paix 
+ Rue du Verdier 
+ 
+Intersection de :
+Rue de la Paix 
+ Rue de la Paix 
+ Rue Pierre Bourdan 
+ 
+Intersection de :
+Rue de la Paix 
+ Rue de la Paix 
+ Rue des Sycomores 
+ 
+Intersection de :
+Rue de la Paix 
+ Rue Bernard Vallot 
+ Rue de la Paix 
+ Rue Émile Bressat 
+ 
+Intersection de :
+Rue de la Paix 
+ Rue de la Paix 
+ Rue des Guillandes 
+ 
+Intersection de :
+Rue de la Paix 
+ Rue de la Paix 
+ 
+Intersection de :
+Rue de la Paix 
+ Rue des Essarts 
+ Rue des Essarts 
+ 
+Intersection de :
+Rue des Essarts 
+ Rue des Essarts 
+ Rue Henri Teissier 
+ 
+Intersection de :
+Rue Laennec 
+ Rue des Essarts 
+ Boulevard Pinel 
+ 
+Intersection de :
+Rue Laennec 
+ Rue Laennec 
+ Boulevard Pinel 
+ 
+Intersection de :
+Rue Laennec 
+ Rue Laennec 
+ Rue Guillaume Paradin 
+ 
+Intersection de :
+Rue Laennec 
+ Rue Laennec 
+ 
+Intersection de :
+Rue Laennec 
+ 
+Intersection de :
+Rue Laennec 
+ Rue Laennec 
+ 
+Intersection de :
+Rue Laennec 
+ Rue Laennec 
+ Rue Thomas Blanchet 
+ 
+Intersection de :
+Rue Thomas Blanchet 
+ Boulevard Ambroise Paré 
+ Rue Thomas Blanchet 
+ Boulevard Ambroise Paré 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Boulevard Ambroise Paré 
+ Boulevard Ambroise Paré 
+ Rue des Artisans 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Boulevard Ambroise Paré 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Boulevard Ambroise Paré 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Boulevard Ambroise Paré 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Boulevard Ambroise Paré 
+ Impasse Jean Jaurès 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Rue du Professeur Joseph Nicolas 
+ Rue du Professeur Joseph Nicolas 
+ Boulevard Ambroise Paré 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Avenue Jean Mermoz 
+ Boulevard Ambroise Paré 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Avenue Jean Mermoz 
+ Boulevard Edmond Michelet 
+ 
+Intersection de :
+Avenue Jean Mermoz 
+ Rue Claude Violet 
+ 
+Intersection de :
+Avenue Jean Mermoz 
+ Rue Toussaint Mille Rue Catherine Favre 
+ 
+Intersection de :
+Rue du Professeur Joseph Nicolas 
+ Avenue Jean Mermoz 
+ Rue du Professeur Joseph Nicolas 
+ 
+Intersection de :
+Rue du Professeur Joseph Nicolas 
+ Rue du Professeur Joseph Nicolas 
+ Avenue Jean Mermoz 
+ 
+Intersection de :
+Rue du Professeur Joseph Nicolas 
+ Rue du Professeur Joseph Nicolas 
+ 
+Intersection de :
+Rue du Professeur Joseph Nicolas 
+ Rue du Professeur Joseph Nicolas 
+ Rue Gaston Brissac 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Rue du Professeur Joseph Nicolas 
+ Rue du Professeur Joseph Nicolas 
+ Boulevard Ambroise Paré 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Boulevard Ambroise Paré 
+ Impasse Jean Jaurès 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Boulevard Ambroise Paré 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Boulevard Ambroise Paré 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Boulevard Ambroise Paré 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Boulevard Ambroise Paré 
+ Boulevard Ambroise Paré 
+ Rue des Artisans 
+ 
+Intersection de :
+Rue Thomas Blanchet 
+ Boulevard Ambroise Paré 
+ Rue Thomas Blanchet 
+ Boulevard Ambroise Paré 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Rue Laennec 
+ Boulevard Ambroise Paré 
+ Rue Laennec 
+ 
+Intersection de :
+Boulevard Ambroise Paré 
+ Boulevard Ambroise Paré 
+ Rue Volney Rue Victor de Laprade 
+ 
+Intersection de :
+Rue Guillaume Paradin 
+ Boulevard Ambroise Paré 
+ Boulevard Ambroise Paré 
+ 
+Intersection de :
+Rue Viala 
+ Avenue Rockefeller 
+ Avenue Rockefeller 
+ Boulevard Ambroise Paré 
+ 
+Intersection de :
+Rue Viala 
+ 
+Intersection de :
+Rue Viala 
+ Rue Viala 
+ 
+Intersection de :
+Rue Viala 
+ Rue Piperoux 
+ 
+Intersection de :
+Rue Viala 
+ 
+Intersection de :
+Rue Viala 
+ Rue Martin 
+ 
+Intersection de :
+Rue Viala 
+ 
+Intersection de :
+Rue Viala 
+ Rue Viala 
+ 
+Intersection de :
+Rue Viala 
+ Rue Trarieux 
+ Rue Viala 
+ 
+Intersection de :
+Avenue Lacassagne 
+ Rue Viala 
+ 
+Intersection de :
+Rue Ferdinand Buisson 
+ 
+Intersection de :
+Rue Ferdinand Buisson 
+ Rue Louise 
+ 
+Intersection de :
+Rue Ferdinand Buisson 
+ Cours Eugénie 
+ 
+Intersection de :
+Rue Ferdinand Buisson 
+ 
+Intersection de :
+Rue Charles Richard 
+ Rue Ferdinand Buisson 
+ 
+Intersection de :
+Rue Ferdinand Buisson 
+ Rue Louis 
+ 
+Intersection de :
+Rue Ferdinand Buisson 
+ Rue du Commandant Marchand 
+ 
+Intersection de :
+Rue Ferdinand Buisson 
+ Rue Camille 
+ Rue Camille 
+ 
+Intersection de :
+Rue Ferdinand Buisson 
+ 
+Intersection de :
+Rue Ferdinand Buisson 
+ Rue des Cerisiers 
+ 
+Intersection de :
+Rue Ferdinand Buisson 
+ 
+Intersection de :
+Rue Ferdinand Buisson 
+ Rue Sainte-Marie 
+ 
+Intersection de :
+Rue Ferdinand Buisson 
+ Rue de la Caille 
+ 
+Intersection de :
+Boulevard Pinel 
+ Rue Ferdinand Buisson 
+ 
+Intersection de :
+Cours Richard Vitton 
+ 
+Intersection de :
+Route de Genas 
+ Cours Richard Vitton 
+ 
+Intersection de :
+Route de Genas 
+ Rue Émile Decorps 
+ 
+Intersection de :
+Rue Émile Decorps 
+ Rue Émile Decorps 
+ 
+Intersection de :
+Rue Émile Decorps 
+ Rue Émile Decorps 
+ 
+Intersection de :
+Rue Émile Decorps 
+ Rue Émile Decorps 
+ 
+Intersection de :
+Rue Émile Decorps 
+ Rue Émile Decorps 
+ 
+Intersection de :
+Rue Émile Decorps 
+ Rue Émile Decorps 
+ Rue Émile Decorps 
+ 
+Intersection de :
+Rue Émile Decorps 
+ Rue Émile Decorps 
+ Avenue Paul Krüger 
+ Avenue Paul Krüger 
+ 
+Intersection de :
+Rue Émile Decorps 
+ Rue de la Ligne de l'Est 
+ Rue Émile Decorps 
+ 
+Intersection de :
+Rue Émile Decorps 
+ Rue Émile Decorps 
+ 
+Intersection de :
+Rue Émile Decorps 
+ Rue Émile Decorps 
+ Rue Antoine Primat 
+ 
+Intersection de :
+Rue Antoine Primat 
+ Rue Berthelot 
+ Rue Antoine Primat 
+ 
+Intersection de :
+Rue Antoine Primat 
+ Rue Antoine Primat 
+ Rue Louis Ducroize 
+ 
+Intersection de :
+Rue Léon Blum 
+ Rue Léon Blum 
+ Rue Louis Ducroize 
+ 
+Intersection de :
+Rue Antoine Primat 
+ Rue Antoine Primat 
+ Rue Louis Ducroize 
+ 
+Intersection de :
+Rue Antoine Primat 
+ Rue Antoine Primat 
+ Rue Poizat 
+ 
+Intersection de :
+Rue Général Leclerc 
+ Rue Général Leclerc 
+ Rue Poizat 
+ 
+Intersection de :
+Rue Général Leclerc 
+ Rue Général Leclerc 
+ Boulevard Honoré de Balzac 
+ 
+Intersection de :
+Rue Général Leclerc 
+ Rue Général Leclerc 
+ 
+Intersection de :
+Rue Général Leclerc 
+ Rue Général Leclerc 
+ Avenue Paul Krüger 
+ 
+Intersection de :
+Rue Général Leclerc 
+ Rue Général Leclerc 
+ 
+Intersection de :
+Rue de l'Église 
+ Route de Genas 
+ Rue Général Leclerc 
+ 
+Intersection de :
+Place Ronde André Bourgogne 
+ Place Ronde André Bourgogne 
+ Rue de l'Église 
+ 
+Intersection de :
+Place Ronde André Bourgogne 
+ Place Ronde André Bourgogne 
+ Cours Richard Vitton 
+ 
+Intersection de :
+Rue Saint-Charles 
+ Cours Richard Vitton 
+ 
+Intersection de :
+Cours Richard Vitton 
+ Cours Docteur Long 
+ 
+Intersection de :
+Boulevard Pinel 
+ Cours Richard Vitton 
+ 
+Intersection de :
+Boulevard Pinel 
+ Rue Ferdinand Buisson 
+ 
+Intersection de :
+Boulevard Pinel 
+ Rue de la Balme 
+ 
+Intersection de :
+Boulevard Pinel 
+ Boulevard Pinel 
+ Rue Gelas 
+ 
+Intersection de :
+Rue Gelas 
+ Rue de la Caille 
+ 
+Intersection de :
+Rue Gelas Rue Sainte-Marie 
+ Place Charles Dufraine 
+ 
+Intersection de :
+Place Charles Dufraine 
+ Rue Pierre Bonnaud 
+ 
+Intersection de :
+Rue Jules Massenet 
+ Rue Bellevue 
+ 
+Intersection de :
+Rue Jules Massenet 
+ Rue Chambovet 
+ Rue Jules Massenet 
+ 
+Intersection de :
+Rue Alfred de Musset 
+ Rue Alfred de Musset 
+ Rue Jules Massenet 
+ Rue Jules Massenet 
+ 
+Intersection de :
+Rue Alfred de Vigny 
+ Rue Alfred de Vigny 
+ Rue Jules Massenet 
+ 
+Intersection de :
+Rue Alfred de Vigny 
+ Rue Alfred de Vigny 
+ Rue André Chénier 
+ 
+Intersection de :
+Rue Alfred de Vigny 
+ Rue Antoine Laviolette 
+ Rue Alfred de Vigny 
+ Rue Antoine Laviolette 
+ 
+Intersection de :
+Rue Alfred de Vigny 
+ Rue Trarieux 
+ 
+Intersection de :
+Avenue Lacassagne 
+ Rue Trarieux 
+ Avenue Lacassagne 
+ 
+Intersection de :
+Cours Eugénie 
+ Cours Eugénie 
+ Rue Trarieux 
+ 
+Intersection de :
+Rue Viala 
+ Rue Trarieux 
+ Rue Viala 
+ 
+Intersection de :
+Rue Trarieux 
+ 
+Intersection de :
+Rue Trarieux 
+ Rue Jean Quitout 
+ 
+Intersection de :
+Rue Trarieux 
+ 
+Intersection de :
+Rue Trarieux 
+ Rue Jean Bart 
+ 
+Intersection de :
+Rue Trarieux 
+ 
+Intersection de :
+Rue Trarieux 
+ Rue Roux-Soignat 
+ 
+Intersection de :
+Rue du Professeur Florence 
+ 
+Intersection de :
+Place d'Arsonval 
+ Cours Albert Thomas 
+ 
+Intersection de :
+Cours Albert Thomas 
+ Rue René et Marguerite Pellet 
+ 
+Intersection de :
+Rue du Professeur Calmette 
+ Rue du Professeur Rochaix 
+ Cours Albert Thomas 
+ 
+Intersection de :
+Cours Albert Thomas 
+ Rue Feuillat 
+ 
+Intersection de :
+Rue du Docteur Bonhomme 
+ Cours Albert Thomas 
+ 
+Intersection de :
+Cours Albert Thomas 
+ Rue Guy 
+ 
+Intersection de :
+Cours Albert Thomas 
+ 
+Intersection de :
+Place Ambroise Courtois 
+ Cours Albert Thomas 
+ 
+Intersection de :
+Cours Albert Thomas 
+ Rue Jeanne Koehler 
+ 
+Intersection de :
+Cours Albert Thomas 
+ Rue du Professeur Paul Sisley 
+ 
+Intersection de :
+Rue Villon 
+ Cours Albert Thomas 
+ 
+Intersection de :
+Cours Albert Thomas 
+ Rue des Tuiliers 
+ 
+Intersection de :
+Cours Albert Thomas 
+ Rue Rossan 
+ 
+Intersection de :
+Rue Saint-Théodore 
+ Cours Albert Thomas 
+ 
+Intersection de :
+Petite Rue de Monplaisir 
+ Cours Albert Thomas 
+ 
+Intersection de :
+Cours Albert Thomas 
+ Cours Albert Thomas 
+ 
+Intersection de :
+Rue du Général Mouton-Duvernet 
+ Cours Albert Thomas 
+ 
+Intersection de :
+Long: 4.859534 , Lat: 45.74965
+
+Intersection de :
+Cours Gambetta 
+ 
+Intersection de :
+Cours Gambetta 
+ Rue Pierre Robin 
+ 
+Intersection de :
+Rue Pierre Robin 
+ 
+Intersection de :
+Grande Rue de la Guillotière 
+ 
+Intersection de :
+Grande Rue de la Guillotière 
+ Grande Rue de la Guillotière 
+ Grande Rue de la Guillotière 
+ 
+Intersection de :
+Boulevard des Tchécoslovaques 
+ Boulevard Vivier-Merle 
+ 
+Intersection de :
+Boulevard des Tchécoslovaques 
+ Rue Jules Brunard 
+ 
+Intersection de :
+Boulevard des Tchécoslovaques 
+ Boulevard des Tchécoslovaques 
+ 
+Intersection de :
+Rue du Général Mouton-Duvernet Cours Albert Thomas 
+ 
+Intersection de :
+Rue du Général Mouton-Duvernet 
+ Cours Albert Thomas 
+ 
+Intersection de :
+Rue du Général Mouton-Duvernet 
+ Rue du Général Mouton-Duvernet 
+ Boulevard Vivier-Merle Cours Albert Thomas 
+ 
+Intersection de :
+Rue du Général Mouton-Duvernet 
+ Rue du Général Mouton-Duvernet 
+ Rue du Dauphiné 
+ 
+Intersection de :
+Rue du Dauphiné 
+ Rue Saint-Théodore 
+ Rue du Dauphiné 
+ 
+Intersection de :
+Rue du Dauphiné 
+ Rue du Dauphiné 
+ 
+Intersection de :
+Rue du Dauphiné 
+ Rue du Dauphiné 
+ Rue Saint-Philippe 
+ 
+Intersection de :
+Rue Roger Bréchan 
+ Rue du Dauphiné 
+ 
+Intersection de :
+Rue Jean Renoir 
+ Rue du Dauphiné 
+ 
+Intersection de :
+Rue du Dauphiné 
+ Rue du Professeur Paul Sisley 
+ 
+Intersection de :
+Avenue Lacassagne 
+ Rue du Dauphiné 
+ Rue du Dauphiné 
+ 
+Intersection de :
+Rue du Dauphiné 
+ Rue du Dauphiné 
+ 
+Intersection de :
+Rue du Dauphiné 
+ Rue du Dauphiné 
+ Impasse Belloeuf 
+ 
+Intersection de :
+Rue du Dauphiné 
+ Rue du Dauphiné 
+ 
+Intersection de :
+Rue du Dauphiné 
+ Rue de Carry 
+ Rue du Dauphiné 
+ 
+Intersection de :
+Rue Villebois-Mareuil 
+ Rue du Dauphiné 
+ Rue du Dauphiné 
+ 
+Intersection de :
+Rue du Dauphiné 
+ Rue du Dauphiné 
+ Rue du Docteur Vaillant 
+ 
+Intersection de :
+Rue du Dauphiné 
+ Route de Genas 
+ Rue Girié 
+ 
+Intersection de :
+Place des Maisons Neuves 
+ Route de Genas 
+ Route de Genas 
+ 
+Intersection de :
+Route de Genas 
+ Route de Genas 
+ Rue Paul Pechoux 
+ 
+Intersection de :
+Route de Genas 
+ Route de Genas 
+ Rue Meunier 
+ Rue Feuillat 
+ 
+Intersection de :
+Route de Genas 
+ Route de Genas 
+ Rue Bellicard 
+ 
+Intersection de :
+Route de Genas 
+ Route de Genas 
+ Rue Claudius Penet 
+ 
+Intersection de :
+Route de Genas 
+ Route de Genas 
+ Rue Galilée 
+ 
+Intersection de :
+Route de Genas 
+ Route de Genas 
+ Rue Cyrano 
+ 
+Intersection de :
+Route de Genas 
+ Route de Genas 
+ Rue Victor Hugo 
+ 
+Intersection de :
+Route de Genas 
+ Route de Genas 
+ Impasse Victor Hugo 
+ 
+Intersection de :
+Route de Genas 
+ Route de Genas 
+ Rue du Professeur Pierre-Victor Galtier 
+ 
+Intersection de :
+Route de Genas 
+ Route de Genas 
+ Impasse du Sablon 
+ 
+Intersection de :
+Route de Genas 
+ Route de Genas 
+ Rue Arago 
+ 
+Intersection de :
+Route de Genas 
+ Rue Saint-Isidore 
+ Cours Richard Vitton 
+ 
+Intersection de :
+Rue Antonin Perrin 
+ Cours Richard Vitton 
+ Rue Bonnand 
+ 
+Intersection de :
+Rue Antonin Perrin 
+ Rue Antonin Perrin 
+ Route de Genas 
+ 
+Intersection de :
+Rue Antonin Perrin 
+ Rue Antonin Perrin 
+ Rue George Sand 
+ 
+Intersection de :
+Rue George Sand 
+ Rue de la Fraternité 
+ 
+Intersection de :
+Rue Eugène Fournière 
+ Rue Eugène Fournière 
+ Rue George Sand 
+ 
+Intersection de :
+Rue George Sand 
+ 
+Intersection de :
+Rue de l'Amitié 
+ Rue George Sand 
+ 
+Intersection de :
+Rue Général Leclerc 
+ Rue Général Leclerc 
+ 
+Intersection de :
+Rue Général Leclerc 
+ Rue Général Leclerc 
+ Avenue Paul Krüger 
+ 
+Intersection de :
+Avenue Paul Krüger 
+ Rue de la Pouponnière 
+ Avenue Paul Krüger 
+ 
+Intersection de :
+Avenue Paul Krüger 
+ Avenue Paul Krüger 
+ Rue des Fleurs 
+ 
+Intersection de :
+Avenue Paul Krüger 
+ Avenue Paul Krüger 
+ Rue Christian de Wett 
+ 
+Intersection de :
+Rue Émile Decorps 
+ Rue Émile Decorps 
+ Avenue Paul Krüger 
+ Avenue Paul Krüger 
+ 
+Intersection de :
+Rue Cyprian 
+ Rue Cyprian 
+ Avenue Paul Krüger 
+ Avenue Paul Krüger 
+ 
+Intersection de :
+Rue Pierre Bressat 
+ Avenue Paul Krüger 
+ Rue Jean-Baptiste Durand 
+ Avenue Paul Krüger 
+ 
+Intersection de :
+Rue Pierre Bressat 
+ Rue des Lauriers 
+ Rue des Lauriers 
+ Rue Pierre Bressat 
+ 
+Intersection de :
+Route de Genas 
+ Route de Genas 
+ 
+Intersection de :
+Route de Genas 
+ Route de Genas 
+ 
+Intersection de :
+Rue Jacques Daligand 
+ Route de Genas 
+ 
+Intersection de :
+Route de Genas 
+ 
+Intersection de :
+Route de Genas 
+ 
+Intersection de :
+Route de Genas 
+ 
+Intersection de :
+Route de Genas 
+ 
+Intersection de :
+Long: 4.9071584 , Lat: 45.75072
+
+Intersection de :
+Long: 4.906675 , Lat: 45.74793
+
+Intersection de :
+Long: 4.906622 , Lat: 45.747643
+
+Intersection de :
+Long: 4.90636 , Lat: 45.74637
+
+Intersection de :
+Long: 4.9061265 , Lat: 45.74514
+
+Intersection de :
+Boulevard Laurent Bonnevay 
+ 
+Intersection de :
+Boulevard Laurent Bonnevay 
+ Boulevard Laurent Bonnevay 
+ 
+Intersection de :
+Boulevard Laurent Bonnevay 
+ Boulevard Laurent Bonnevay 
+ 
+Intersection de :
+Avenue Franklin Roosevelt 
+ 
+Intersection de :
+Avenue Franklin Roosevelt 
+ Avenue Franklin Roosevelt 
+ 
+Intersection de :
+Avenue Franklin Roosevelt 
+ Boulevard Laurent Bonnevay 
+ 
+Intersection de :
+Avenue Franklin Roosevelt 
+ Avenue Franklin Roosevelt 
+ 
+Intersection de :
+Avenue Franklin Roosevelt 
+ 
+Intersection de :
+Avenue Franklin Roosevelt 
+ Boulevard Laurent Bonnevay 
+ 
+Intersection de :
+Avenue Franklin Roosevelt 
+ 
+Intersection de :
+Avenue Franklin Roosevelt 
+ Avenue Franklin Roosevelt 
+ 
+Intersection de :
+Avenue Franklin Roosevelt 
+ Avenue Franklin Roosevelt 
+ Rue du Progrès 
+ 
+Intersection de :
+Avenue Franklin Roosevelt 
+ Avenue Franklin Roosevelt 
+ Rue Docteur Charles Faguin 
+ 
+Intersection de :
+Rue du Square 
+ Rue du Square 
+ Rue Docteur Charles Faguin 
+ 
+Intersection de :
+Rue du Square 
+ Avenue du Bois 
+ 
+Intersection de :
+Avenue du Bois 
+ Avenue du Bois 
+ Avenue des Colonnes 
+ 
+Intersection de :
+Avenue des Colonnes 
+ 

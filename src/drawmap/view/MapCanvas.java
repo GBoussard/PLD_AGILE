@@ -316,8 +316,9 @@ public class MapCanvas extends Pane implements Observer {
     public void highlighClickedRequest(String intersectionId) {
         List<Node> l = this.getChildren().filtered(idEquals(intersectionId));
         if (l.size() == 1) {
+            this.drawMap();
             Shape intersectionToHighligh = (Shape) l.get(0);
-            intersectionToHighligh.setFill(Color.BLACK);
+            intersectionToHighligh.setFill(Color.CORNFLOWERBLUE);
         }
     }
 }
