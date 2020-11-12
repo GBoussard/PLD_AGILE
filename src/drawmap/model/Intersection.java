@@ -79,7 +79,7 @@ public class Intersection {
             // 3 : if there is a longer redundancy, we delete it.
             else if(current.getKey().getDestination().getId() == s.getDestination().getId()
                     && current.getKey().getLength() > s.getLength()) {
-                voisins.remove(i);
+                voisins.remove(current);
             }
         }
 
