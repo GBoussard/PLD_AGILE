@@ -127,6 +127,10 @@ public class ComputeTour extends Observable{
         }
     }
 
+    public List<Segment> getPath() {
+        return chemin;
+    }
+
     public boolean getComputed(){
         return computed;
     }
