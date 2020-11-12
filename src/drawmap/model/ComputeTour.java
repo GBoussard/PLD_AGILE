@@ -1,10 +1,12 @@
 package drawmap.model;
 
-import javafx.scene.Node;
 import javafx.util.Pair;
 
 import java.util.*;
 
+/**
+ * Computed tour model class
+ */
 public class ComputeTour extends Observable{
 
     public static final double speed = 15/3.6; //speed is 15km/h so 15/3.6 m/s
@@ -17,12 +19,20 @@ public class ComputeTour extends Observable{
     private CityMap cm;
     private DeliveryTour dt;
 
+    /**
+     * Constructor for ComputeTour
+     * @param cm : map model used for computing
+     * @param dt : requests to be fulfilled
+     */
     public ComputeTour(CityMap cm, DeliveryTour dt){
         this.cm = cm;
         this.dt = dt;
         this.computed = false;
     }
 
+    /**
+     * Computes tour with A* algorithm
+     */
     public void computeTour(){
 
         intersectionsDate = new LinkedList<Pair<Intersection, Date>>();
@@ -93,7 +103,7 @@ public class ComputeTour extends Observable{
         intersectionsDate.add(new Pair(depot, dt.getDepartureTime()));
         for (int i=0; i< cheminInter.size()-1; i++){
             Intersection current = cheminInter.get(i);
-            for (Pair<Segment, Intersection> voisin : current.getVoisins()) {
+            for (Pair<Segment, Intersection> voisin : current.getNeighbours()) {
                 if(voisin.getValue().getId()==cheminInter.get(i+1).getId()){
 
                     chemin.add(voisin.getKey());
@@ -109,6 +119,10 @@ public class ComputeTour extends Observable{
         notifyObservers();
     }
 
+    /**
+     * Gets an iterator to iterate through the computed path
+     * @return Iterator
+     */
     public Iterator<Segment> getPathIterator(){
         if(chemin != null){
             return chemin.iterator();
@@ -118,6 +132,10 @@ public class ComputeTour extends Observable{
         }
     }
 
+    /**
+     * Gets an iterator to iterate through the list of dates by intersection
+     * @return Iterator
+     */
     public Iterator<Pair<Intersection, Date>> getIntersectionsDateIterator(){
         if(intersectionsDate != null){
             return intersectionsDate.iterator();
@@ -127,13 +145,26 @@ public class ComputeTour extends Observable{
         }
     }
 
+    /**
+     * Gets path
+     * @return chemin
+     */
     public List<Segment> getPath() {
         return chemin;
     }
 
+    /**
+     * Return <pre>true</pre> if computation has been made
+     * @return
+     */
     public boolean getComputed(){
         return computed;
     }
 
+
+    /**
+     * Sets computed status
+     * @param value : new value
+     */
     public void setComputed(boolean value){ this.computed = value;}
 }

@@ -6,12 +6,21 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 
 /**
- *
+ * View class for computed tour segments
  * @author kn
  */
 public class Arrow extends Path{
     private static final double defaultArrowHeadSize = 5.0;
 
+    /**
+     * Constructor for Arrow
+     * @param startX
+     * @param startY
+     * @param endX
+     * @param endY
+     * @param scale
+     * @param arrowHeadSize
+     */
     public Arrow(double startX, double startY, double endX, double endY, double scale, double arrowHeadSize){
         super();
         strokeProperty().bind(fillProperty());
@@ -42,6 +51,14 @@ public class Arrow extends Path{
         getElements().add(new LineTo(startX + (endX-startX)/2.0, startY + (endY-startY)/2.0));
     }
 
+    /**
+     * Constructor for arrow (default head size)
+     * @param startX
+     * @param startY
+     * @param endX
+     * @param endY
+     * @param scale
+     */
     public Arrow(double startX, double startY, double endX, double endY, double scale){
         this(startX, startY, endX, endY, scale, defaultArrowHeadSize);
     }

@@ -90,7 +90,7 @@ public class Algorithm {
                     return new Pair(reconstruct_path(predecessors,current),fScores.get(current));
                 }else{
 
-                    for (Pair i: current.getVoisins()) {
+                    for (Pair i: current.getNeighbours()) {
                         double possibleScore = gScores.get(current) + ((Pair<Segment, Intersection>)i).getKey().getLength();
                         Intersection neighbor = (Intersection)i.getValue();
                         if(possibleScore<gScores.get(neighbor)){

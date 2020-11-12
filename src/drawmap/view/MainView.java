@@ -134,22 +134,42 @@ public class MainView extends Application {
 
     }
 
+    /**
+     * Gets controller
+     * @return controller
+     */
     public Controller getController() {
         return controller;
     }
 
+    /**
+     * Sets controller
+     * @param controller
+     */
     public void setController(Controller controller) {
         this.controller = controller;
     }
 
+    /**
+     * Sets map displaying scale
+     * @param scale
+     */
     public void setMapCanvasScale(double scale){
         mapCanvas.setScale(scale);
     }
 
+    /**
+     * Highlights given intersection in graphical view
+     * @param intersectionId : intersection to highlight
+     */
     public void focusClickedRequestInMap(String intersectionId){
         this.mapCanvas.highlighClickedRequest(intersectionId);
     }
 
+    /**
+     * Highlights given intersection in textual view
+     * @param intersectionId : intersection to highlight
+     */
     public void focusClickedRequestInRequestView(String intersectionId) {
         this.requestView.highlighClickedRequest(intersectionId);
     }

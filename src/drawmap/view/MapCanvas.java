@@ -18,6 +18,9 @@ import java.util.function.Predicate;
 
 //https://docs.oracle.com/javafx/2/ui_controls/slider.htm and https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Slider.html and http://johnthecodingarchitect.blogspot.com/2013/11/scaling-vs-zooming-in-javafx.html
 
+/**
+ * View class for map visualisation
+ */
 public class MapCanvas extends Pane implements Observer {
 
     private CityMap map;
@@ -40,6 +43,15 @@ public class MapCanvas extends Pane implements Observer {
     //control attributes
     private Double old_x=null, old_y = null;
 
+    /**
+     * Constructor for MapCanvas
+     * @param m : map to display
+     * @param dt : delivery tour to display
+     * @param ct : computed tour to display
+     * @param width : map display width
+     * @param height : map display height
+     * @param c : parent controller
+     */
     public MapCanvas(CityMap m, DeliveryTour dt, ComputeTour ct,Integer width, Integer height, Controller c){
         super();
         this.setHeight(height);
@@ -109,6 +121,10 @@ public class MapCanvas extends Pane implements Observer {
     }
 
 
+    /**
+     * Sets map displaying scale
+     * @param s
+     */
     public void setScale(double s) {
         this.scale = s;
         a_h = -this.height / scale;
@@ -132,6 +148,9 @@ public class MapCanvas extends Pane implements Observer {
         }
     }
 
+    /**
+     * Draws map
+     */
     public void drawMap() {
         this.getChildren().clear();
         Iterator it_segment = this.map.getSegmentIterator();
@@ -313,6 +332,10 @@ public class MapCanvas extends Pane implements Observer {
         return p -> p.getId() != null && p.getId().equals(id);
     }
 
+    /**
+     * Highlights given intersection
+     * @param intersectionId
+     */
     public void highlighClickedRequest(String intersectionId) {
         List<Node> l = this.getChildren().filtered(idEquals(intersectionId));
         if (l.size() == 1) {
