@@ -61,4 +61,9 @@ public class DeliveryTour extends Observable{
         return requests.iterator();
     }
 
+    public void removeAllRequests(){
+        requests.removeAll(requests);
+        origin = null;
+    }
+
 }

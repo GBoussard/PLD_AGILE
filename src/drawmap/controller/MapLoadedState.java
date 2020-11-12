@@ -23,4 +23,14 @@ public class MapLoadedState implements State {
     public void redo(ListOfCommands l){
         l.redo();
     }
+
+    @Override
+    public void loadMap(Controller c){
+        c.getDeliveryTour().removeAllRequests();
+        File map = c.getMainView().chooseFile("Choose a map file");
+        if(map != null) {
+            c.getCityMap().read(map.getAbsolutePath());
+        }
+    }
+
 }

@@ -90,8 +90,10 @@ public class RequestView extends Pane implements Observer {
         Boolean neighboorsHaveName = false;
 
         // on affiche le depot
-        HBox depotContener = this.createLineInfosAboutIntersection(this.tour.getOrigin(), Color.RED, 0);
-        verticalrequestContainer.getChildren().addAll(depotContener);
+        if (this.tour.getOrigin() != null){
+            HBox depotContener = this.createLineInfosAboutIntersection(this.tour.getOrigin(), Color.RED, 0, true);
+            verticalrequestContainer.getChildren().addAll(depotContener);
+        }
         if (this.computedTour.getComputed()){
             Iterator it_compute_tour = computedTour.getIntersectionsDateIterator();
 
@@ -130,11 +132,11 @@ public class RequestView extends Pane implements Observer {
                 // si elle y est, on affiche
                 for (Request r: requests){
                     if (r.getPickup().getId() == intersectionId) {
-                        HBox PickupContener = this.createLineInfosAboutIntersection(r.getPickup(), r.getColor(), r.getPickupDuration());
+                        HBox PickupContener = this.createLineInfosAboutIntersection(r.getPickup(), r.getColor(), r.getPickupDuration(), false);
                         verticalrequestContainer.getChildren().add(PickupContener);
                     }
                     else if(r.getDelivery().getId() ==  intersectionId){
-                        HBox intersectionContener = this.createLineInfosAboutIntersection(r.getDelivery(), r.getColor(), r.getDeliveryDuration());
+                        HBox intersectionContener = this.createLineInfosAboutIntersection(r.getDelivery(), r.getColor(), r.getDeliveryDuration(), true);
                         verticalrequestContainer.getChildren().add(intersectionContener);
                     }
                 }
@@ -168,9 +170,8 @@ public class RequestView extends Pane implements Observer {
             // s'il n'y a pas de compute tour, on affiche le delivery tour
             while(it_requests.hasNext()){
                 Request r = (Request) it_requests.next();
-
-                HBox pickupContener = this.createLineInfosAboutIntersection(r.getPickup(), r.getColor(), r.getPickupDuration());
-                HBox deliveryContener = this.createLineInfosAboutIntersection(r.getDelivery(), r.getColor(), r.getDeliveryDuration());
+                HBox pickupContener = this.createLineInfosAboutIntersection(r.getPickup(), r.getColor(), r.getPickupDuration(), false);
+                HBox deliveryContener = this.createLineInfosAboutIntersection(r.getDelivery(), r.getColor(), r.getDeliveryDuration(), true);
 
                 verticalrequestContainer.getChildren().addAll(pickupContener, deliveryContener);
             }
@@ -200,7 +201,7 @@ public class RequestView extends Pane implements Observer {
         }
     }
 
-    public HBox createLineInfosAboutIntersection(Intersection i, Color color, int duration){
+    public HBox createLineInfosAboutIntersection(Intersection i, Color color, int duration, boolean delivery){
         HBox contener = new HBox();
         contener.setSpacing(15);
         contener.setId(i.getId().toString());
@@ -224,7 +225,7 @@ public class RequestView extends Pane implements Observer {
         Text DurationText = new Text("Duration: "+(duration / 60)+" minute(s)");
 
         Button intersectionButton = new Button();
-        String round = (this.countNbRequestPrinted % 2 == 1) ? "-fx-background-radius: 50em;" : "";
+        String round = (delivery) ? "-fx-background-radius: 50em;" : "";
         intersectionButton.setStyle("-fx-background-color: "+toHexString(color)+";"+round);
 
         contener.getChildren().addAll(numero_pickup, intersectionButton, intersectionStreets , DurationText);

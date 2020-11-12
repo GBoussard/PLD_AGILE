@@ -74,6 +74,7 @@ public class MainView extends Application {
         but_map.setOnAction(e -> {
 
             controller.loadMap();
+            requestView.drawRequestView();
 
         });
         loadBox.getChildren().add(but_map);
