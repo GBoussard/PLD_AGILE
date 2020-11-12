@@ -7,6 +7,7 @@ public class MapLoadedState implements State {
 
     @Override
     public void loadRequests(Controller c){
+        c.getComputeTour().setComputed(false);
         File dt = c.getMainView().chooseFile("Choose a requests file");
         if(dt != null){
             c.getDeliveryTour().read(dt.getAbsolutePath(), c.getCityMap());

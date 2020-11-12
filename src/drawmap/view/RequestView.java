@@ -166,7 +166,6 @@ public class RequestView extends Pane implements Observer {
         }
         else{
             // s'il n'y a pas de compute tour, on affiche le delivery tour
-
             while(it_requests.hasNext()){
                 Request r = (Request) it_requests.next();
 

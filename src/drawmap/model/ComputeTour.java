@@ -130,4 +130,6 @@ public class ComputeTour extends Observable{
     public boolean getComputed(){
         return computed;
     }
+
+    public void setComputed(boolean value){ this.computed = value;}
 }
