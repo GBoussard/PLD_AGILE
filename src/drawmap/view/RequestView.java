@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -113,7 +112,7 @@ public class RequestView extends Pane implements Observer {
                 roadMap += "Intersection de :\n";
 
                 neighboorsHaveName = false;
-                ArrayList<Pair<Segment, Intersection>> voisins = i.getVoisins();
+                ArrayList<Pair<Segment, Intersection>> voisins = i.getNeighbours();
                 for( Pair<Segment, Intersection> v : voisins){
                     String name = v.getKey().getName();
                     if (!name.equals("")){
@@ -211,7 +210,7 @@ public class RequestView extends Pane implements Observer {
 
         String streets = "Intersection de :\n";
 
-        ArrayList<Pair<Segment, Intersection>> voisins = i.getVoisins();
+        ArrayList<Pair<Segment, Intersection>> voisins = i.getNeighbours();
         for( Pair<Segment, Intersection> p : voisins){
             streets += p.getKey().getName()+" \n ";
         }

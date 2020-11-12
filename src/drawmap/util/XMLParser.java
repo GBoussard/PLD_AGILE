@@ -12,13 +12,19 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Class for XML file parsing via SAXParser
+ */
 public class XMLParser {
-    //Nous nous servirons de cette variable plus tard
+    // This variable will be used later
     private String node = null;
     private CityMap cm;
     private DeliveryTour dt;
 
 
+    /**
+     * Private class used for map file parsing
+     */
     private class MapParser extends DefaultHandler {
         private CityMap cm;
 
@@ -52,6 +58,9 @@ public class XMLParser {
 
     }
 
+    /**
+     * Private class used for request file parsing
+     */
     private class TourParser extends DefaultHandler {
 
         private DeliveryTour dt;
@@ -104,15 +113,28 @@ public class XMLParser {
 
     }
 
+    /**
+     * Default constructor
+     */
     public XMLParser() {
 
     }
 
+    /**
+     * Constructor for XMLParser
+     * @param cm : CityMap object to populate
+     * @param dt : DeliveryTour object to populate
+     */
     public XMLParser(CityMap cm, DeliveryTour dt) {
         this.cm = cm;
         this.dt = dt;
     }
 
+    /**
+     * Parses a map file and stores it into <pre>cm</pre>
+     * @param filepath
+     * @param cm
+     */
     public void parseMap(String filepath, CityMap cm) {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -124,6 +146,12 @@ public class XMLParser {
 
     }
 
+    /**
+     * Parses a request file and stores it into <pre>dt</pre>
+     * @param filepath
+     * @param dt
+     * @param cm : CityMap for intersection information
+     */
     public void parseTour(String filepath, DeliveryTour dt, CityMap cm){
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
