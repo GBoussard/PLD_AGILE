@@ -8,6 +8,7 @@ import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -59,7 +60,13 @@ public class MainView extends Application {
         textualView.getChildren().add(loadBox);
 
         requestView = new RequestView(controller.getDeliveryTour(), controller.getComputeTour(), this.controller);
-        textualView.getChildren().add(requestView);
+
+        ScrollPane scrollPaneRequestView = new ScrollPane();
+        scrollPaneRequestView.setContent(requestView);
+        scrollPaneRequestView.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+
+        textualView.getChildren().addAll(requestView, scrollPaneRequestView);
+
 
 
         loadBox.setPrefSize(400,200);
