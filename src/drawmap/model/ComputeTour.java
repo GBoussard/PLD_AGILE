@@ -14,6 +14,7 @@ public class ComputeTour extends Observable{
     private List<Intersection> cheminInter;
     private List<Segment> chemin;
     private List<Pair<Intersection, Date>> intersectionsDate; //Useful for TextualView
+    private List<Pair<Intersection, Date>> intersectionsDateReduced; //Useful for TextualView
     private boolean computed;
 
     private CityMap cm;
@@ -45,9 +46,11 @@ public class ComputeTour extends Observable{
         HashMap<Pair<Long,Long>,Double> cost = new HashMap<>();
         HashMap<Pair<Long,Long>,Pair<LinkedList<Intersection>, Double>> ways = new HashMap<>();
         HashMap<Intersection,Segment> edges = new HashMap<>();
+        HashMap<Long,Intersection> idToInter = new HashMap<>();
         Intersection depot = dt.getOrigin();
+        idToInter.put(depot.getId(), depot);
         for (Intersection i1 : allPoints) {
-
+            idToInter.put(i1.getId(), i1);
             Pair<LinkedList<Intersection>, Double> way = Algorithm.A_star(depot,i1,cm);
             ways.put(new Pair(depot.getId(),i1.getId()),way);
             cost.put(new Pair(depot.getId(),i1.getId()), way.getValue());
@@ -89,27 +92,46 @@ public class ComputeTour extends Observable{
         System.out.println("0");
         LinkedList<Intersection> cheminInter = new LinkedList<>();
         LinkedList<Segment> chemin = new LinkedList<>();
+        intersectionsDate.add(new Pair(depot, dt.getDepartureTime()));
+        long lastTime = dt.getDepartureTime().getTime();
+
 
         for (int i=0; i< allPoints.size(); i++){
             LinkedList<Intersection> partialWay = new LinkedList<>();
             Long inter = tsp.getSolution(i);
             partialWay = ways.get(new Pair(inter,tsp.getSolution(i+1))).getKey();
+            int timeToTravel = (int)(cost.get(new Pair(inter,tsp.getSolution(i+1)))/speed);
+            long nextDate = lastTime + timeToTravel *1000;
+            lastTime = nextDate;
+            Intersection inte = idToInter.get(inter);
+            intersectionsDate.add(new Pair(inte, new Date(nextDate)));
             cheminInter.addAll(partialWay);
         }
+
+        int size = allPoints.size();
+        Long inter = tsp.getSolution(size);
+
+        int timeToTravel = (int)(cost.get(new Pair(inter,tsp.getSolution(0)))/speed);
+        long nextDate = lastTime + timeToTravel*1000;
+        lastTime = nextDate;
+        Intersection inte = idToInter.get(inter);
+        intersectionsDate.add(new Pair(inte, new Date(nextDate)));
+
         LinkedList<Intersection> partialWay = new LinkedList<>();
-        Long inter = tsp.getSolution(allPoints.size());
+
         partialWay = ways.get(new Pair(inter,tsp.getSolution(0))).getKey();
         cheminInter.addAll(partialWay);
-        intersectionsDate.add(new Pair(depot, dt.getDepartureTime()));
+
+
+
+
         for (int i=0; i< cheminInter.size()-1; i++){
             Intersection current = cheminInter.get(i);
             for (Pair<Segment, Intersection> voisin : current.getNeighbours()) {
                 if(voisin.getValue().getId()==cheminInter.get(i+1).getId()){
 
                     chemin.add(voisin.getKey());
-                    int timeToTravel = (int) (voisin.getKey().getLength() / speed); //time is in second
-                    long nextDate = intersectionsDate.get(intersectionsDate.size() - 1 ).getValue().getTime() + 1000 * timeToTravel;
-                    intersectionsDate.add(new Pair(voisin.getValue(), new Date(nextDate)));
+
                 }
             }
         }

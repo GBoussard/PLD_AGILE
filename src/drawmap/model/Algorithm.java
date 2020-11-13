@@ -7,9 +7,17 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Vector;
 
+/**
+ * Helper algorithmic static methods
+ */
 public class Algorithm {
     final static double radius = 6371.01;
 
+    /**
+     * @param a : First intersection
+     * @param b : Second intersection
+     * @return : euclidian distance between a and b
+     */
     public static double getDistance(Intersection a, Intersection b){
 
         double lon1 = a.getLongitude();
@@ -28,6 +36,11 @@ public class Algorithm {
         return Math.sqrt(distance);
     }
 
+    /**
+     * @param predecessors : Predecessors map, associating Intersections to their predecessors
+     * @param current : endpoint of the path
+     * @return Ordered path arriving to current
+     */
     public static LinkedList<Intersection> reconstruct_path(HashMap<Intersection,Intersection> predecessors, Intersection current){
         double total = 0.0;
         LinkedList<Intersection> result = new LinkedList<>();
@@ -42,6 +55,11 @@ public class Algorithm {
         return result;
     }
 
+    /**
+     * @param fScores
+     * @param openSet
+     * @return Intersection from openSet of minimum fScore
+     */
     public static Intersection getMinElement(HashMap<Intersection,Double> fScores, Vector<Intersection> openSet){
         double minScore = Double.MAX_VALUE;
         Intersection inter = null;
@@ -53,6 +71,14 @@ public class Algorithm {
         }
         return inter;
     }
+
+
+    /**
+     * @param start
+     * @param end
+     * @param map
+     * @return shortest path from start to end following the streets of map
+     */
     public static Pair<LinkedList<Intersection>,Double> A_star(Intersection start, Intersection end, CityMap map){
         // cheapest known cost from start to node
         HashMap<Intersection,Double> gScores = new HashMap<>(); // initialize with infinite cost except for starting node : 0

@@ -4,6 +4,9 @@ import javafx.util.Pair;
 
 import java.util.HashMap;
 
+/**
+ *
+ */
 public class CompleteGraph implements Graph {
 
 	HashMap<Pair<Long,Long>,Double> cost;
