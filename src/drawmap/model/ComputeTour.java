@@ -153,12 +153,21 @@ public class ComputeTour extends Observable{
         return chemin;
     }
 
+
     /**
      * Return <pre>true</pre> if computation has been made
      * @return
      */
     public boolean getComputed(){
         return computed;
+    }
+
+    public CityMap getCityMap(){
+        return this.cm;
+    }
+
+    public DeliveryTour getDeliveryTour(){
+        return this.dt;
     }
 
 

@@ -14,15 +14,7 @@ public class MapLoadedState implements State {
         }
     }
 
-    @Override
-    public void undo(ListOfCommands l){
-        l.undo();
-    }
 
-    @Override
-    public void redo(ListOfCommands l){
-        l.redo();
-    }
 
     @Override
     public void loadMap(Controller c){

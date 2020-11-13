@@ -56,6 +56,26 @@ public class CityMap extends Observable {
     }
 
     /**
+     * Returns the intersection closest to the Point (longitude, latitude)
+     * @param longitude X coordinate of the Point
+     * @param latitude Y coordinate of the Point
+     * @return Intersection
+     */
+    public Intersection findIntersection(Double longitude, Double latitude){
+        Double bestEuclidianDist = Double.MAX_VALUE;
+        Intersection result = null;
+        for(Intersection i : map_intersection.values()){
+            //System.out.println(i.getLatitude()+" : "+i.getLongitude());
+            double tmp = Math.sqrt(Math.pow(longitude - i.getLongitude(), 2) + (Math.pow(latitude - i.getLatitude(), 2)));
+            if(tmp < bestEuclidianDist){
+                bestEuclidianDist = tmp;
+                result = i;
+            }
+        }
+        return result;
+    }
+
+    /**
      * Adds a segment to the map
      * @param length : segment length
      * @param id_origin : origin intersection identifier

@@ -4,11 +4,13 @@ import drawmap.model.*;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
+import javafx.util.Pair;
 
 import java.util.Iterator;
 import java.util.List;
@@ -76,9 +78,10 @@ public class MapCanvas extends Pane implements Observer {
 
 
         this.setOnMousePressed(e-> {
-            //System.out.println(e.getX() + " " + e.getY());
+
             old_x = e.getX();
             old_y = e.getY();
+            //System.out.println(old_x+" ; "+ old_y);
         });
 
         this.setOnMouseDragged(e-> {
@@ -101,10 +104,10 @@ public class MapCanvas extends Pane implements Observer {
 
         });
 
-        this.setOnMouseReleased(e-> {
+        /*this.setOnMouseReleased(e-> {
             old_x = null;
             old_y = null;
-        });
+        });*/
 
         this.setOnScroll(s-> {
             //System.out.println(s.getTextDeltaY());
@@ -322,6 +325,18 @@ public class MapCanvas extends Pane implements Observer {
         return value;
     }
 
+    public double getOriginalLongitude(){
+        if (old_x != null)
+            return (old_x - b_w)/a_w;
+        return -1;
+    }
+
+    public double getOriginalLatitude(){
+        if (old_y != null)
+            return (old_y - b_h)/a_h;
+        return -1;
+    }
+
 
     @Override
     public void update(Observable o, Object arg) {
@@ -343,5 +358,19 @@ public class MapCanvas extends Pane implements Observer {
             Shape intersectionToHighligh = (Shape) l.get(0);
             intersectionToHighligh.setFill(Color.CORNFLOWERBLUE);
         }
+    }
+
+    public Pair<Double, Double> getCoordClick(MouseEvent event){
+        double longitude;
+        double latitude;
+        if(event.getButton().equals(MouseButton.PRIMARY)){
+            if(event.getClickCount() == 2){
+                longitude = getOriginalLongitude();
+                latitude = getOriginalLatitude();
+                Pair<Double, Double> coord = new Pair(longitude, latitude);
+                return coord;
+            }
+        }
+        return null;
     }
 }

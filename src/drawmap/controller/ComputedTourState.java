@@ -1,7 +1,9 @@
 package drawmap.controller;
 
 import drawmap.model.ComputeTour;
+import drawmap.model.Intersection;
 import drawmap.model.Request;
+import javafx.util.Pair;
 
 import java.io.File;
 
@@ -13,26 +15,41 @@ public class ComputedTourState implements State{
     }
 
     @Override
-    public void undo(ListOfCommands l){
+    public void computeTour(Controller c){
+        c.getComputeTour().computeTour();
+    }
+
+    @Override
+    public void undo(ListOfCommands l, Controller c){
         l.undo();
+        computeTour(c);
     }
 
     @Override
-    public void redo(ListOfCommands l){
+    public void redo(ListOfCommands l, Controller c){
         l.redo();
+        computeTour(c);
     }
 
     @Override
-    public void addRequest(Controller c, Request r, ListOfCommands l){
+    public void addRequest(Controller c, Pair<Double, Double> coordPickup, Pair<Double, Double> coordDelivery, Pair<Double, Double> previous, Pair<Double, Double> next, int pickupDuration, int DeliveryDuration, ListOfCommands l){
+        Intersection pickup = c.getComputeTour().getCityMap().findIntersection(coordPickup.getKey(), coordPickup.getValue());
+        Intersection delivery = c.getComputeTour().getCityMap().findIntersection(coordDelivery.getKey(), coordDelivery.getValue());
+        /*Intersection previousInter = c.getComputeTour().getNearestIntersection(previous);
+        Intersection nextInter = c.getComputeTour().getNearestIntersection(next);*/
+        Request r = new Request(pickup, delivery, pickupDuration*60, DeliveryDuration*60);
         if(r != null){
-            l.addCommands(new AddCommand(c.getDeliveryTour(), r));
+            l.addCommands(new AddCommand(c.getComputeTour().getDeliveryTour(), r));
+            computeTour(c);
         }
     }
 
     @Override
-    public void removeRequest(Controller c, Request r, ListOfCommands l){
+    public void removeRequest(Controller c, Pair<Double, Double> coord, ListOfCommands l){
+        Request r = c.getComputeTour().getDeliveryTour().getNearestRequest(coord.getKey(), coord.getValue());
         if(r != null){
-            l.addCommands(new ReverseCommand(new AddCommand(c.getDeliveryTour(), r)));
+            l.addCommands(new ReverseCommand(new AddCommand(c.getComputeTour().getDeliveryTour(), r)));
+            computeTour(c);
         }
     }
 
@@ -45,6 +62,7 @@ public class ComputedTourState implements State{
             c.getCityMap().read(map.getAbsolutePath());
         }
     }
+
 
     @Override
     public void highlightRequestPointInRequestView(Controller c, String intersectionId){

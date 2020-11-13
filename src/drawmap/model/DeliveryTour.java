@@ -27,6 +27,30 @@ public class DeliveryTour extends Observable{
         return origin;
     }
 
+    /**
+     * Returns the Request which pickup or delivery point is the closest to the Point (longitude, latitude)
+     * @param longitude X coordinate of the Point
+     * @param latitude Y coordinate of the Point
+     * @return Request
+     */
+    public Request getNearestRequest(double longitude, double latitude){
+        double bestEuclidianDist = Double.MAX_VALUE;
+        Request result = null;
+        for(int i = 0; i < requests.size(); ++i){
+            double tmp = Math.sqrt(Math.pow(requests.get(i).getDelivery().getLongitude() - longitude, 2) + Math.pow(requests.get(i).getDelivery().getLatitude() - latitude, 2));
+            double tmpbis = Math.sqrt(Math.pow(requests.get(i).getPickup().getLongitude() - longitude, 2) + Math.pow(requests.get(i).getPickup().getLatitude() - latitude, 2));
+            if (tmp < bestEuclidianDist){
+                bestEuclidianDist = tmp;
+                result = requests.get(i);
+            }
+            if(tmpbis < bestEuclidianDist){
+                bestEuclidianDist = tmpbis;
+                result = requests.get(i);
+            }
+        }
+        return result;
+    }
+
 
     /**
      * Sets the tour origin
@@ -56,6 +80,7 @@ public class DeliveryTour extends Observable{
      */
     public List<Request> getRequests() {
         return requests;
+
     }
 
     /**
@@ -64,13 +89,19 @@ public class DeliveryTour extends Observable{
      */
     public void addRequest(Request r) {
         requests.add(r);
+        setChanged();
+        notifyObservers();
     }
 
     /**
      * Remove a request from the request list
      * @param r : request to be deleted
      */
-    public void removeRequest(Request r) { requests.remove(r); }
+    public void removeRequest(Request r) {
+        requests.remove(r);
+        setChanged();;
+        notifyObservers();
+    }
 
     /**
      * Gets tour's departure time

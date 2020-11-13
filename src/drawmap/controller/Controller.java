@@ -9,6 +9,7 @@ import drawmap.view.MapCanvas;
 import javafx.application.Application;
 import javafx.scene.control.Alert;
 import javafx.stage.FileChooser;
+import javafx.util.Pair;
 
 import java.io.File;
 
@@ -28,25 +29,27 @@ public class Controller {
         cm = new CityMap();
         dt = new DeliveryTour();
         ct = new ComputeTour(cm, dt);
+        l = new ListOfCommands();
         currentState = new InitialState();
+
     }
 
 
 
     public void undo(){
-        currentState.undo(l);
+        currentState.undo(l, this);
     }
 
     public void redo(){
-        currentState.redo(l);
+        currentState.redo(l, this);
     }
 
-    public void addRequest(Request request){
-        currentState.addRequest(this, request, l);
+    public void addRequest(Pair<Double, Double> coordPickup, Pair<Double,Double> coordDelivery, Pair<Double, Double> previous, Pair<Double, Double> next, int pickupDuration, int deliveryDuration){
+        currentState.addRequest(this, coordPickup, coordDelivery, previous, next, pickupDuration, deliveryDuration , l);
     }
 
-    public void removeRequest(Request request){
-        currentState.removeRequest(this, request, l);
+    public void removeRequest(Pair<Double, Double> coord){
+        currentState.removeRequest(this, coord, l);
     }
 
     public void setMapCanvasScale(double s) {
@@ -67,6 +70,10 @@ public class Controller {
 
     public DeliveryTour getDeliveryTour() {
         return dt;
+    }
+
+    public State getCurrentState(){
+        return currentState;
     }
 
     public MainView getMainView(){

@@ -18,14 +18,16 @@ public class ListOfCommands {
     }
 
     public void undo(){
-        if(i>=0)
+        if(i>=0) {
             listCommands.get(i).undoCommand();
-        i--;
+            i--;
+        }
 
     }
     public void redo(){
-        i++;
-        listCommands.get(i).doCommand();
-
+        if(i+1 < listCommands.size()) {
+            i++;
+            listCommands.get(i).doCommand();
+        }
     }
 }
