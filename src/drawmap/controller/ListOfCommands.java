@@ -30,4 +30,12 @@ public class ListOfCommands {
             listCommands.get(i).doCommand();
         }
     }
+
+    public LinkedList<Command> getListCommands(){
+        return listCommands;
+    }
+
+    public void setI(int i){
+        this.i = i;
+    }
 }

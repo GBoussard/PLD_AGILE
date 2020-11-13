@@ -5,6 +5,15 @@ Intersection de :
 Avenue des Colonnes 
  
 Intersection de :
+Rue Frédéric Mistral 
+ Rue Frédéric Mistral 
+ 
+Intersection de :
+Place des Maisons Neuves 
+ Rue Jean Jaurès 
+ Rue Rhonat 
+ 
+Intersection de :
 Avenue Jean Mermoz 
  Rue Claude Violet 
  
@@ -20,14 +29,4 @@ Rue Léon Blum
 Intersection de :
 Rue Jules Massenet 
  Rue Bellevue 
- 
-Intersection de :
-Boulevard des Tchécoslovaques 
- Rue Jules Brunard 
- 
-Intersection de :
-Rue Cyprian 
- Rue Cyprian 
- Avenue Paul Krüger 
- Avenue Paul Krüger 
  
