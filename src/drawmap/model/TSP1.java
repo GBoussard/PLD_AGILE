@@ -61,31 +61,26 @@ public class TSP1 extends TemplateTSP {
 			double MST = MSTcost(unvisited,unvisited.iterator().next());
 			double minCurrentCollec = Double.MAX_VALUE;
 			double minCollecDepot = Double.MAX_VALUE;
-			double minCollecDepotBis = Double.MAX_VALUE;
-			long minCurrentCollecIndex = Long.MAX_VALUE;
-			long minCollecDepotIndex = Long.MAX_VALUE;
+
 
 			for (Node i: unvisited) {
 				double distance1 = g.cost.get(new Pair(currentVertex.id,i.id));
 				double distance2 = g.cost.get(new Pair(i.id,depot.id));
 
 				if(distance1<minCurrentCollec) {
-					minCurrentCollecIndex = i.id;
+
 					minCurrentCollec = distance1;
 				}
 
 				if(distance2<minCollecDepot) {
-					minCollecDepotIndex = i.id;
-					minCollecDepotBis = minCollecDepot;
+
 					minCollecDepot = distance2;
 				}
 
 			}
-			if(minCollecDepotIndex==minCurrentCollecIndex){
-				return MST+minCollecDepotBis+minCurrentCollec;
-			}else{
+
 				return MST+minCollecDepot+minCurrentCollec;
-			}
+
 
 		}
 

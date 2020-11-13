@@ -75,6 +75,9 @@ public abstract class TemplateTSP implements TSP {
 	private void branchAndBound(Node currentVertex, Collection<Node> unvisited,
 								Collection<Long> visited, double currentCost){
 		if (System.currentTimeMillis() - startTime > timeLimit) return;
+		double test = currentCost+bound(currentVertex,unvisited);
+		double tst;
+		double bond = bound(currentVertex,unvisited);
 		if (unvisited.size() == 0){
 			Node beginning = this.depot;
 			if (g.isArc(currentVertex.id,beginning.id)){
@@ -83,6 +86,8 @@ public abstract class TemplateTSP implements TSP {
 					bestSolCost = currentCost+g.getCost(currentVertex.id,beginning.id);
 				}
 			}
+
+
 		} else if (currentCost+bound(currentVertex,unvisited) < bestSolCost){
 			Iterator<Node> it = iterator(currentVertex, unvisited);
 
