@@ -133,11 +133,11 @@ public class RequestView extends Pane implements Observer {
                 // si elle y est, on affiche
                 for (Request r: requests){
                     if (r.getPickup().getId() == intersectionId) {
-                        HBox PickupContener = this.createLineInfosAboutIntersection(r.getPickup(), r.getColor(), date, false);
+                        HBox PickupContener = this.createLineInfosAboutIntersection(r.getPickup(), r.getColor(), "Time : " + date, false);
                         verticalrequestContainer.getChildren().add(PickupContener);
                     }
                     else if(r.getDelivery().getId() ==  intersectionId){
-                        HBox intersectionContener = this.createLineInfosAboutIntersection(r.getDelivery(), r.getColor(), date, true);
+                        HBox intersectionContener = this.createLineInfosAboutIntersection(r.getDelivery(), r.getColor(), "Time : "+ date, true);
                         verticalrequestContainer.getChildren().add(intersectionContener);
                     }
                 }
@@ -171,8 +171,8 @@ public class RequestView extends Pane implements Observer {
             // s'il n'y a pas de compute tour, on affiche le delivery tour
             while(it_requests.hasNext()){
                 Request r = (Request) it_requests.next();
-                HBox pickupContener = this.createLineInfosAboutIntersection(r.getPickup(), r.getColor(), String.valueOf(r.getPickupDuration()), false);
-                HBox deliveryContener = this.createLineInfosAboutIntersection(r.getDelivery(), r.getColor(), String.valueOf(r.getDeliveryDuration()), true);
+                HBox pickupContener = this.createLineInfosAboutIntersection(r.getPickup(), r.getColor(), "Pickup duration : " + String.valueOf(r.getPickupDuration()), false);
+                HBox deliveryContener = this.createLineInfosAboutIntersection(r.getDelivery(), r.getColor(), "Delivery duration : " + String.valueOf(r.getDeliveryDuration()), true);
 
                 verticalrequestContainer.getChildren().addAll(pickupContener, deliveryContener);
             }
@@ -223,7 +223,7 @@ public class RequestView extends Pane implements Observer {
         Label numero_pickup = new Label(this.countNbRequestPrinted+") ");
         
         Text intersectionStreets = new Text(streets);
-        Text DurationText = new Text("Duration: "+date+" minute(s)");
+        Text DurationText = new Text(date);
 
         Button intersectionButton = new Button();
         String round = (delivery) ? "-fx-background-radius: 50em;" : "";

@@ -58,7 +58,7 @@ public class Controller {
 
     public void loadMap(){
         boolean status;
-        status = currentState.loadMap(this);
+        status = currentState.loadMap(l,this);
         if(status) {
             currentState = new MapLoadedState();
         } else {
@@ -68,7 +68,7 @@ public class Controller {
 
     public void loadRequest(){
         boolean status;
-        status = currentState.loadRequests(this);
+        status = currentState.loadRequests(l, this);
         if(status) {
             currentState = new RequestsLoadedState();
         } else {

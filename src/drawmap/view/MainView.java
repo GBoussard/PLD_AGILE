@@ -144,11 +144,11 @@ public class MainView extends Application {
                                 case 1:
                                     coordDelivery = mapCanvas.getCoordClick(mouseEvent);
                                     System.out.println("Delivery: "+coordDelivery);
+                                    controller.addRequest(coordPickup, coordDelivery, null, null, pickUpDuration, deliveryDuration);
                                     if (controller.getCurrentState() instanceof RequestsLoadedState){
-                                        controller.addRequest(coordPickup, coordDelivery, null, null, pickUpDuration, deliveryDuration);
                                     }
                                     break;
-                                case 2:
+                                /*case 2:
                                     if (controller.getCurrentState() instanceof ComputedTourState) {
                                         previous = mapCanvas.getCoordClick(mouseEvent);
                                         System.out.println("previous: " + previous);
@@ -160,7 +160,7 @@ public class MainView extends Application {
                                         System.out.println("next: " + next);
                                         controller.addRequest(coordPickup, coordDelivery, previous, next, pickUpDuration, deliveryDuration);
                                     }
-                                    break;
+                                    break;*/
                             }
                             indexAdding++;
                         }
@@ -220,7 +220,6 @@ public class MainView extends Application {
         stage.setScene(scene);
         stage.show();
 
-        displayAlert("test");
     }
 
     public File chooseFile(String title){
