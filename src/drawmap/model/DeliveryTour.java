@@ -66,12 +66,17 @@ public class DeliveryTour extends Observable{
      * @param filepath : path to selected file
      * @param cm : CityMap object to populate
      */
-    public void read(String filepath, CityMap cm){
+    public boolean read(String filepath, CityMap cm){
         this.requests = new ArrayList<Request>();
         XMLParser parser = new XMLParser();
-        parser.parseTour(filepath, this, cm);
-        setChanged();
-        notifyObservers();
+
+        boolean status;
+        status = parser.parseTour(filepath, this, cm);
+        if(status) {
+            setChanged();
+            notifyObservers();
+        }
+        return status;
     }
 
     /**

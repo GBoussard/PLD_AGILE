@@ -8,13 +8,14 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -72,18 +73,21 @@ public class MainView extends Application {
         VBox textualView = new VBox();
 
         HBox loadBox = new HBox(10);
+        loadBox.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         textualView.getChildren().add(loadBox);
 
         requestView = new RequestView(controller.getDeliveryTour(), controller.getComputeTour(), this.controller);
 
         ScrollPane scrollPaneRequestView = new ScrollPane();
         scrollPaneRequestView.setContent(requestView);
+        scrollPaneRequestView.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+        scrollPaneRequestView.setPrefSize(750,1000);
         scrollPaneRequestView.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 
         textualView.getChildren().addAll(requestView, scrollPaneRequestView);
 
 
-        loadBox.setPrefSize(400,200);
+        loadBox.setPrefSize(750,200);
         Button but_map = new Button("Load a map");
         but_map.setOnAction(e -> {
 
@@ -93,6 +97,7 @@ public class MainView extends Application {
         loadBox.getChildren().add(but_map);
         but_map.prefHeightProperty().bind(loadBox.heightProperty());
         but_map.prefWidthProperty().bind(loadBox.widthProperty().divide(7));
+        but_map.setWrapText(true);
 
         Button but_req = new Button("Load a request file");
         but_req.setOnAction(e -> {
@@ -103,6 +108,7 @@ public class MainView extends Application {
         loadBox.getChildren().add(but_req);
         but_req.prefHeightProperty().bind(loadBox.heightProperty());
         but_req.prefWidthProperty().bind(loadBox.widthProperty().divide(7));
+        but_req.setWrapText(true);
 
         Button but_comp = new Button("Compute tour");
         but_comp.setOnAction(e-> {
@@ -116,6 +122,7 @@ public class MainView extends Application {
         loadBox.getChildren().add(but_comp);
         but_comp.prefHeightProperty().bind(loadBox.heightProperty());
         but_comp.prefWidthProperty().bind(loadBox.widthProperty().divide(7));
+        but_comp.setWrapText(true);
 
 
         Button but_add = new Button("Add request");
@@ -164,6 +171,7 @@ public class MainView extends Application {
         loadBox.getChildren().add(but_add);
         but_add.prefHeightProperty().bind(loadBox.heightProperty());
         but_add.prefWidthProperty().bind(loadBox.widthProperty().divide(7));
+        but_add.setWrapText(true);
         Button but_remove = new Button("Remove a request");
         but_remove.setOnAction(e ->{
             indexRemoving = 0;
@@ -185,6 +193,7 @@ public class MainView extends Application {
         loadBox.getChildren().add(but_remove);
         but_remove.prefHeightProperty().bind(loadBox.heightProperty());
         but_remove.prefWidthProperty().bind(loadBox.widthProperty().divide(7));
+        but_remove.setWrapText(true);
 
         Button but_undo = new Button("Undo");
         but_undo.setOnAction(e ->{
@@ -193,6 +202,7 @@ public class MainView extends Application {
         loadBox.getChildren().add(but_undo);
         but_undo.prefHeightProperty().bind(loadBox.heightProperty());
         but_undo.prefWidthProperty().bind(loadBox.widthProperty().divide(7));
+        but_undo.setWrapText(true);
 
         Button but_redo = new Button("Redo");
         but_redo.setOnAction(e ->{
@@ -201,6 +211,7 @@ public class MainView extends Application {
         loadBox.getChildren().add(but_redo);
         but_redo.prefHeightProperty().bind(loadBox.heightProperty());
         but_redo.prefWidthProperty().bind(loadBox.widthProperty().divide(7));
+        but_redo.setWrapText(true);
 
         root.getChildren().add(textualView);
         Scene scene = new Scene(root, 1920, 1000);
@@ -208,6 +219,8 @@ public class MainView extends Application {
         stage.setTitle("Lines");
         stage.setScene(scene);
         stage.show();
+
+        displayAlert("test");
     }
 
     public File chooseFile(String title){
@@ -268,6 +281,15 @@ public class MainView extends Application {
 
     public void focusClickedRequestInRequestView(String intersectionId) {
         this.requestView.highlighClickedRequest(intersectionId);
+    }
+
+    public void displayAlert(String cause) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(cause);
+
+        alert.showAndWait();
     }
 
 }

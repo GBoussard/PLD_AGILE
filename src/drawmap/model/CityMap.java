@@ -28,12 +28,17 @@ public class CityMap extends Observable {
      * Reads an XML file and stores it
      * @param file : path to the map file
      */
-    public void read(String file) {
+    public boolean read(String file) {
         this.clearMap();
         XMLParser parser = new XMLParser();
-        parser.parseMap(file, this);
-        setChanged();
-        notifyObservers();
+
+        boolean status;
+        status = parser.parseMap(file, this);
+        if(status) {
+            setChanged();
+            notifyObservers();
+        }
+        return status;
     }
 
     /**

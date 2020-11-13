@@ -54,13 +54,17 @@ public class ComputedTourState implements State{
     }
 
     @Override
-    public void loadMap(Controller c){
+    public boolean loadMap(Controller c){
         c.getDeliveryTour().removeAllRequests();
         c.getComputeTour().setComputed(false);
         File map = c.getMainView().chooseFile("Choose a map file");
+
+        boolean status = false;
         if(map != null) {
-            c.getCityMap().read(map.getAbsolutePath());
+            status = c.getCityMap().read(map.getAbsolutePath());
         }
+
+        return status;
     }
 
 
@@ -75,11 +79,15 @@ public class ComputedTourState implements State{
     }
 
     @Override
-    public void loadRequests(Controller c){
+    public boolean loadRequests(Controller c){
         c.getComputeTour().setComputed(false);
         File dt = c.getMainView().chooseFile("Choose a requests file");
+
+        boolean status = false;
         if(dt != null){
-            c.getDeliveryTour().read(dt.getAbsolutePath(), c.getCityMap());
+            status = c.getDeliveryTour().read(dt.getAbsolutePath(), c.getCityMap());
         }
+
+        return status;
     }
 }

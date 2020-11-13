@@ -4,6 +4,7 @@ import drawmap.model.*;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.SAXParser;
@@ -22,11 +23,15 @@ public class XMLParser {
     private DeliveryTour dt;
 
 
+
+
     /**
      * Private class used for map file parsing
      */
     private class MapParser extends DefaultHandler {
         private CityMap cm;
+
+        private boolean startedSegmentParsing = false;
 
         public MapParser(CityMap cm) {
             this.cm = cm;
@@ -46,10 +51,14 @@ public class XMLParser {
                 throws SAXException {
 
             if (qname == "intersection") {
+                if(startedSegmentParsing) {
+                    throw new SAXException();
+                }
                 cm.addIntersection(Long.parseLong(attrs.getValue("id")), Double.parseDouble(attrs.getValue("latitude")),
                         Double.parseDouble(attrs.getValue("longitude")));
             }
             if (qname == "segment") {
+                startedSegmentParsing = true;
                 cm.addSegment(Double.parseDouble(attrs.getValue("length")), Long.parseLong(attrs.getValue("origin")),
                         Long.parseLong(attrs.getValue("destination")), attrs.getValue("name"));
 
@@ -135,13 +144,15 @@ public class XMLParser {
      * @param filepath
      * @param cm
      */
-    public void parseMap(String filepath, CityMap cm) {
+    public boolean parseMap(String filepath, CityMap cm) {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser parser = factory.newSAXParser();
             parser.parse(new File(filepath), new MapParser(cm));
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
 
     }
@@ -152,13 +163,15 @@ public class XMLParser {
      * @param dt
      * @param cm : CityMap for intersection information
      */
-    public void parseTour(String filepath, DeliveryTour dt, CityMap cm){
+    public boolean parseTour(String filepath, DeliveryTour dt, CityMap cm){
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser parser = factory.newSAXParser();
             parser.parse(new File(filepath), new TourParser(dt, cm));
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
 
     }

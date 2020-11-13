@@ -57,13 +57,23 @@ public class Controller {
     }
 
     public void loadMap(){
-        currentState.loadMap(this);
-        currentState = new MapLoadedState();
+        boolean status;
+        status = currentState.loadMap(this);
+        if(status) {
+            currentState = new MapLoadedState();
+        } else {
+            mainView.displayAlert("Map loading failed");
+        }
     }
 
     public void loadRequest(){
-        currentState.loadRequests(this);
-        currentState = new RequestsLoadedState();
+        boolean status;
+        status = currentState.loadRequests(this);
+        if(status) {
+            currentState = new RequestsLoadedState();
+        } else {
+            mainView.displayAlert("Request loading failed");
+        }
     }
 
 
