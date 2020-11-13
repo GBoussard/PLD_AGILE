@@ -1,5 +1,8 @@
 package drawmap.model;
 
+/**
+ * Node of the graph used to model pickup, depot and delivery points
+ */
 public class Node{
     public Long id;
     public Double cost;

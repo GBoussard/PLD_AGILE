@@ -6,6 +6,11 @@ import java.util.*;
 
 public class TSP1 extends TemplateTSP {
 
+	/**
+	 * @param graph
+	 * @param start
+	 * @return cost of the minimum spanning tree of "graph"
+	 */
 	public  double MSTcost(Collection<Node> graph, Node start) {
 		double cost = 0;
 		Node startNode = null;
@@ -89,15 +94,6 @@ public class TSP1 extends TemplateTSP {
 
 	@Override
 	protected Iterator<Node> iterator(Node currentVertex, Collection<Node> unvisited) {
-	/*	ArrayList nodes = new ArrayList<Node>();
-		nodes.addAll(unvisited);
-		Comparator<Node> nodeComparator
-				= Comparator.comparing( (s1) -> {
-					return g.cost.get(new Pair(currentVertex.id,s1.id));
-				});
-		Collections.sort(nodes,nodeComparator);
-		return nodes.iterator();*/
-
 		return new SeqIter(unvisited);
 	}
 

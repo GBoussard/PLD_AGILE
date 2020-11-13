@@ -13,6 +13,14 @@ public abstract class TemplateTSP implements TSP {
 	private long startTime;
 	private List<Request> requests;
 	protected Node depot;
+
+
+	/**
+	 * @param timeLimit
+	 * @param g
+	 * @param requests
+	 * @param depot
+	 */
 	public void searchSolution(int timeLimit, CompleteGraph g, List<Request> requests, Intersection depot){
 
 		if (timeLimit <= 0) return;
@@ -36,12 +44,19 @@ public abstract class TemplateTSP implements TSP {
 
 	}
 
+	/**
+	 * @param i
+	 * @return
+	 */
 	public Long getSolution(int i){
 		if (g != null && i>=0 && i<g.getNbVertices())
 			return bestSol[i];
 		return null;
 	}
 
+	/**
+	 * @return the cost of the best solution computed
+	 */
 	public double getSolutionCost(){
 		if (g != null)
 			return bestSolCost;
@@ -108,6 +123,13 @@ public abstract class TemplateTSP implements TSP {
 
 		}
 	}
+
+
+	/**
+	 * @param inter
+	 * @param visited
+	 * @return true if you can visit inter, i.e. if it is a pickup or if you visited the associated delivery
+	 */
 	private boolean isAllowed(Node inter, Collection<Long> visited){
 
 		Long associatedPickup;
